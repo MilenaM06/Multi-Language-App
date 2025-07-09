@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="MultiLangApp Installer" Language="1033" Version="1.0.0.0" Manufacturer="Milena" UpgradeCode="f65f72db-7fff-403a-b89b-68cd1f3e35df">
+	<Product Id="*" Name="MultiLangApp" Language="1033" Version="1.0.0.0" Manufacturer="Milena" UpgradeCode="dd0b0396-04e1-4b15-9007-df1352a81df8">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
@@ -23,7 +23,7 @@
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 
-			<Component Id="WpfAppExe" Guid="e4d4c40e-4bfc-4907-bf88-9de5b8d9f2e1">
+			<Component Id="WpfAppExe" Guid="f6b5a2a3-7ad0-4e1d-923d-6b98dcb617e3">
 				<File Id="WpfAppExeFile"
 					  Source="..\..\..\MyWpfApp\bin\Release\net8.0-windows\MyWpfApp.exe" />
 				<File Id="WpfAppDllFile"
@@ -45,9 +45,9 @@
 				<RemoveFolder Id="RemoveAppFolder" Directory="INSTALLFOLDER" On="uninstall"/>
 			</Component>
 
-			<Component Id="NetStandardLibDll" Guid="3f93c91b-b0e2-4e9a-90ad-50fd0be8c89e">
+			<Component Id="NetStandardLibDll" Guid="a2c4e8d1-45ab-4e1b-9c56-88e7686e3ad1">
 				<File Id="NetStandardLibDllFile"
-					  Source="..\..\..\MyNetStandardLib\bin\Release\net8.0\MyNetStandardLib.dll" />
+					  Source="..\..\..\MyWpfApp\bin\Release\net8.0-windows\MyNetStandardLib.dll" />
 				<RegistryValue Root="HKCU"
 							   Key="Software\MultiLangApp\MyNetStandardLib"
 							   Name="installed"
@@ -55,16 +55,27 @@
 							   Value="1"
 							   KeyPath="yes"/>
 			</Component>
-			
-			<Component Id="NetFrameworkAppDll" Guid="9b6f1e4d-2d32-4b55-8f68-4720be1dbbf9">
-					<File Id="NetFrameworkAppDllFile"
-						  Source="..\..\..\MyNetFrameworkApp\bin\Release\MyNetFrameworkApp.dll" />
-					<RegistryValue Root="HKCU"
-								   Key="Software\MultiLangApp\MyNetFrameworkApp"
-								   Name="installed"
-								   Type="integer"
-								   Value="1"
-								   KeyPath="yes"/>
+
+			<Component Id="NetFrameworkAppDll" Guid="b9e5187c-3fcd-4ce6-81b6-b08b714ef22c">
+				<File Id="NetFrameworkAppDllFile"
+					  Source="..\..\..\MyWpfApp\bin\Release\net8.0-windows\MyNetFrameworkApp.dll" />
+				<RegistryValue Root="HKCU"
+							   Key="Software\MultiLangApp\MyNetFrameworkApp"
+							   Name="installed"
+							   Type="integer"
+							   Value="1"
+							   KeyPath="yes"/>
+			</Component>
+
+			<Component Id="CliProjectDll" Guid="d3c273e4-9a55-407f-b1b4-55c24a67c177">
+				<File Id="CliProjectDllFile"
+					  Source="..\..\..\MyWpfApp\bin\Release\net8.0-windows\MyCliProject.dll"/>
+				<RegistryValue Root="HKCU"
+							   Key="Software\MultiLangApp\MyCliProject"
+							   Name="installed"
+							   Type="integer"
+							   Value="1"
+							   KeyPath="yes"/>
 			</Component>
 
 		</ComponentGroup>
