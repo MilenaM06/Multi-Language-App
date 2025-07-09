@@ -10,11 +10,12 @@ jobs:
   build:
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        configuration: [Release]
 
     runs-on: windows-latest
 
     steps:
+    
       - name: Checkout
         uses: actions/checkout@v4
 
