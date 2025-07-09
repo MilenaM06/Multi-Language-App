@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="Installer" Language="1033" Version="1.0.0.0" Manufacturer="Milena" UpgradeCode="f65f72db-7fff-403a-b89b-68cd1f3e35df">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+
+		<Feature Id="ProductFeature" Title="Installer" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="LocalAppDataFolder">
+				<Directory Id="INSTALLFOLDER" Name="Installer" />
+				<Directory Id="DesktopFolder" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+
+			<Component Id="WpfAppExe" Guid="e4d4c40e-4bfc-4907-bf88-9de5b8d9f2e1">
+				<File Id="WpfAppExeFile"
+					  Source="..\..\..\MyWpfApp\bin\Release\net8.0-windows\MyWpfApp.exe" />
+				<File Id="WpfAppDllFile"
+					  Source="..\..\..\MyWpfApp\bin\Release\net8.0-windows\MyWpfApp.dll" />
+				<File Id="RuntimeConfigJson"
+					  Source="..\..\..\MyWpfApp\bin\Release\net8.0-windows\MyWpfApp.runtimeconfig.json" />
+				<Shortcut Id="DesktopShortcut"
+						  Directory="DesktopFolder"
+						  Name="MyWpfApp"
+						  WorkingDirectory="INSTALLFOLDER"
+						  Advertise="no"
+						  Description="Launch MyWpfApp" />
+				<RegistryValue Root="HKCU"
+							   Key="Software\MultiLangApp\MyWpfApp"
+							   Name="installed"
+							   Type="integer"
+							   Value="1"
+							   KeyPath="yes"/>
+				<RemoveFolder Id="RemoveAppFolder" Directory="INSTALLFOLDER" On="uninstall"/>
+			</Component>
+
+			<Component Id="NetStandardLibDll" Guid="3f93c91b-b0e2-4e9a-90ad-50fd0be8c89e">
+				<File Id="NetStandardLibDllFile"
+					  Source="..\..\..\MyNetStandardLib\bin\Release\net8.0\MyNetStandardLib.dll" />
+				<RegistryValue Root="HKCU"
+							   Key="Software\MultiLangApp\MyNetStandardLib"
+							   Name="installed"
+							   Type="integer"
+							   Value="1"
+							   KeyPath="yes"/>
+			</Component>
+
+		</ComponentGroup>
+	</Fragment>
+</Wix>
