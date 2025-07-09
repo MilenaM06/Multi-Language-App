@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>3.10</ProductVersion>
-    <ProjectGuid>200cda93-9c3e-4790-9f4e-4782f4382991</ProjectGuid>
+    <ProjectGuid>29f1a635-5429-42cf-9cb7-7f02e131860b</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
     <OutputName>Installer</OutputName>
     <OutputType>Package</OutputType>

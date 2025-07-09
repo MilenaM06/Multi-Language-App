@@ -32,11 +32,14 @@ jobs:
       - name: Restore NuGet packages
         run: msbuild wpf-dotnetcore.sln /t:Restore
 
-      - name: Build MyNetStandardLib
-        run: msbuild MyNetStandardLib\MyNetStandardLib.csproj /p:Configuration=Release
+      - name: Build MyCliProject
+        run: msbuild MyCliProject\MyCliProject.vcxproj /p:Configuration=Release
 
       - name: Build MyNetFrameworkApp
         run: msbuild MyNetFrameworkApp\MyNetFrameworkApp.csproj /p:Configuration=Release
+
+      - name: Build MyNetStandardLib
+        run: msbuild MyNetStandardLib\MyNetStandardLib.csproj /p:Configuration=Release
 
       - name: Build MyWpfApp
         run: msbuild MyWpfApp\MyWpfApp.csproj /p:Configuration=Release

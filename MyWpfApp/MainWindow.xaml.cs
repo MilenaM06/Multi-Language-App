@@ -1,6 +1,4 @@
 ﻿using System.Windows;
-using MyNetStandardLib;
-using MyNetFrameworkApp;
 
 namespace MyWpfApp
 {
@@ -20,6 +18,13 @@ namespace MyWpfApp
         private void Net_Framework_Click(object sender, RoutedEventArgs e)
         {
             string message = MyNetFrameworkApp.Greeter.SayHello();
+            OutputTextBox.Text = message;
+        }
+
+        private void Cli_Click(object sender, RoutedEventArgs e)
+        {
+            MyCliProject.Greeter greeter = new MyCliProject.Greeter();
+            string message = greeter.SayHello();
             OutputTextBox.Text = message;
         }
     }
