@@ -1,0 +1,53 @@
+name: Multi Language Application
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    runs-on: windows-latest 
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Install WiX Toolset 3.14
+      run: choco install wixtoolset --version=3.14.1.20250415 --yes
+
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v2
+      
+    - name: Restore NuGet packages
+      run: msbuild wpf-dotnetcore.sln /t:Restore
+    
+    - name: Build MyNetStandardLib
+      run: msbuild MyNetStandardLib\MyNetStandardLib.csproj /p:Configuration=Release
+      
+    - name: Build MyWpfApp
+      run: msbuild MyWpfApp\MyWpfApp.csproj /p:Configuration=Release
+
+    - name: Build MSI Installer
+      run: msbuild Installer\Installer.wixproj /p:Configuration=Release
+
+    - name: Upload MSI Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: MSI-Package
+        path: |
+          Installer\bin\Release\*.msi
+
+
