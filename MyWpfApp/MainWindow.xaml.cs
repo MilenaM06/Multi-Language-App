@@ -1,4 +1,9 @@
 ﻿using System.Windows;
+<<<<<<< HEAD
+=======
+using MyNetStandardLib;
+using MyNetFrameworkApp;
+>>>>>>> main
 
 namespace MyWpfApp
 {
@@ -18,6 +23,7 @@ namespace MyWpfApp
         private void Net_Framework_Click(object sender, RoutedEventArgs e)
         {
             string message = MyNetFrameworkApp.Greeter.SayHello();
+<<<<<<< HEAD
             OutputTextBox.Text = message;
         }
 
@@ -25,6 +31,8 @@ namespace MyWpfApp
         {
             MyCliProject.Greeter greeter = new MyCliProject.Greeter();
             string message = greeter.SayHello();
+=======
+>>>>>>> main
             OutputTextBox.Text = message;
         }
     }
