@@ -10,11 +10,12 @@ jobs:
   build:
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        configuration: [Release]
 
     runs-on: windows-latest
 
     steps:
+    
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -30,7 +31,7 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Restore NuGet packages
-        run: msbuild wpf-dotnetcore.sln /t:Restore
+        run: msbuild Multi-Language-App.sln /t:Restore
 
       - name: Build MyCliProject
         run: msbuild MyCliProject\MyCliProject.vcxproj /p:Configuration=Release
