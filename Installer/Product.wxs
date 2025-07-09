@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="Installer" Language="1033" Version="1.0.0.0" Manufacturer="Milena" UpgradeCode="f65f72db-7fff-403a-b89b-68cd1f3e35df">
+	<Product Id="*" Name="MultiLangApp Installer" Language="1033" Version="1.0.0.0" Manufacturer="Milena" UpgradeCode="f65f72db-7fff-403a-b89b-68cd1f3e35df">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 		<MediaTemplate />
 
-		<Feature Id="ProductFeature" Title="Installer" Level="1">
+		<Feature Id="ProductFeature" Title="MultiLangApp" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
 		</Feature>
 	</Product>
@@ -14,7 +14,7 @@
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="LocalAppDataFolder">
-				<Directory Id="INSTALLFOLDER" Name="Installer" />
+				<Directory Id="INSTALLFOLDER" Name="MultiLangApp" />
 				<Directory Id="DesktopFolder" />
 			</Directory>
 		</Directory>
@@ -32,10 +32,10 @@
 					  Source="..\..\..\MyWpfApp\bin\Release\net8.0-windows\MyWpfApp.runtimeconfig.json" />
 				<Shortcut Id="DesktopShortcut"
 						  Directory="DesktopFolder"
-						  Name="MyWpfApp"
+						  Name="MultiLangApp"
 						  WorkingDirectory="INSTALLFOLDER"
 						  Advertise="no"
-						  Description="Launch MyWpfApp" />
+						  Description="Launch MultiLangApp" />
 				<RegistryValue Root="HKCU"
 							   Key="Software\MultiLangApp\MyWpfApp"
 							   Name="installed"
@@ -54,6 +54,17 @@
 							   Type="integer"
 							   Value="1"
 							   KeyPath="yes"/>
+			</Component>
+			
+			<Component Id="NetFrameworkAppDll" Guid="9b6f1e4d-2d32-4b55-8f68-4720be1dbbf9">
+					<File Id="NetFrameworkAppDllFile"
+						  Source="..\..\..\MyNetFrameworkApp\bin\Release\MyNetFrameworkApp.dll" />
+					<RegistryValue Root="HKCU"
+								   Key="Software\MultiLangApp\MyNetFrameworkApp"
+								   Name="installed"
+								   Type="integer"
+								   Value="1"
+								   KeyPath="yes"/>
 			</Component>
 
 		</ComponentGroup>

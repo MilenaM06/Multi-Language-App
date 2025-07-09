@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MyNetFrameworkApp\MyNetFrameworkApp.csproj" />
     <ProjectReference Include="..\MyNetStandardLib\MyNetStandardLib.csproj" />
   </ItemGroup>
 
