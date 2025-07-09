@@ -31,7 +31,7 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Restore NuGet packages
-        run: msbuild wpf-dotnetcore.sln /t:Restore
+        run: msbuild Multi-Language-App.sln /t:Restore
 
       - name: Build MyNetStandardLib
         run: msbuild MyNetStandardLib\MyNetStandardLib.csproj /p:Configuration=Release
