@@ -33,10 +33,10 @@ jobs:
         run: msbuild Multi-Language-App.sln /t:Restore
 
       - name: Build MyCppProject
-        run: msbuild MyCppProject\MyCppProject.vcxproj /p:Configuration=Release
+        run: msbuild MyCppProject\MyCppProject.vcxproj /p:Configuration=Release /p:Platform=x64
 
       - name: Build MyCliProject
-        run: msbuild MyCliProject\MyCliProject.vcxproj /p:Configuration=Release
+        run: msbuild MyCliProject\MyCliProject.vcxproj /p:Configuration=Release /p:Platform=x64
 
       - name: Build MyNetFrameworkApp
         run: msbuild MyNetFrameworkApp\MyNetFrameworkApp.csproj /p:Configuration=Release
