@@ -39,10 +39,10 @@ jobs:
         run: msbuild MyCliProject\MyCliProject.vcxproj /p:Configuration=Release /p:Platform=x64
 
       - name: Build MyNetFrameworkApp
-        run: msbuild MyNetFrameworkApp\MyNetFrameworkApp.csproj /p:Configuration=Release /p:Platform=x64
+        run: msbuild MyNetFrameworkApp\MyNetFrameworkApp.csproj /p:Configuration=Release
 
       - name: Build MyNetStandardLib
-        run: msbuild MyNetStandardLib\MyNetStandardLib.csproj /p:Configuration=Release /p:Platform=x64
+        run: msbuild MyNetStandardLib\MyNetStandardLib.csproj /p:Configuration=Release
 
       - name: Build MyWpfApp
         run: msbuild MyWpfApp\MyWpfApp.csproj /p:Configuration=Release /p:Platform=x64
