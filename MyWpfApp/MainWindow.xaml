@@ -19,7 +19,10 @@
                       BorderThickness="0" Cursor="Hand" Click="Net_Framework_Click"/>
                     <Button Content="C++/CLI" Width="150" Height="50" Margin="5" 
                       Background="#007ACC" Foreground="White" FontWeight="Bold" FontSize="16" 
-                      BorderThickness="0" Cursor="Hand" Click="Cli_Click"/>      
+                      BorderThickness="0" Cursor="Hand" Click="Cli_Click"/>
+                    <Button Content="C++ Native" Width="150" Height="50" Margin="5" 
+                      Background="#007ACC" Foreground="White" FontWeight="Bold" FontSize="16" 
+                      BorderThickness="0" Cursor="Hand" Click="Cpp_Click"/>         
                 </StackPanel>
                 <TextBox x:Name="OutputTextBox" Width="300" Height="100" Margin="0" Padding="10"
                   FontSize="14" TextWrapping="Wrap" IsReadOnly="True"

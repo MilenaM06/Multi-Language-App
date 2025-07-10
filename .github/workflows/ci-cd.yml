@@ -32,6 +32,9 @@ jobs:
       - name: Restore NuGet packages
         run: msbuild Multi-Language-App.sln /t:Restore
 
+      - name: Build MyCppProject
+        run: msbuild MyCppProject\MyCppProject.vcxproj /p:Configuration=Release
+
       - name: Build MyCliProject
         run: msbuild MyCliProject\MyCliProject.vcxproj /p:Configuration=Release
 
