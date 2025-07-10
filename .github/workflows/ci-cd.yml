@@ -44,3 +44,4 @@ jobs:
           name: MSI-Package
           path: |
             Installer\bin\Release\*.msi
+            Installer\bin\Release\*.cab
