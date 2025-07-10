@@ -32,17 +32,8 @@ jobs:
       - name: Restore NuGet packages
         run: msbuild Multi-Language-App.sln /t:Restore
 
-      - name: Build MyCliProject
-        run: msbuild MyCliProject\MyCliProject.vcxproj /p:Configuration=Release
-
-      - name: Build MyNetFrameworkApp
-        run: msbuild MyNetFrameworkApp\MyNetFrameworkApp.csproj /p:Configuration=Release
-
-      - name: Build MyNetStandardLib
-        run: msbuild MyNetStandardLib\MyNetStandardLib.csproj /p:Configuration=Release
-
-      - name: Build MyWpfApp
-        run: msbuild MyWpfApp\MyWpfApp.csproj /p:Configuration=Release
+      - name: Build solution
+        run: msbuild Multi-Language-App.sln /p:Configuration=Release /p:Platform=x64
 
       - name: Build MSI Installer
         run: msbuild Installer\Installer.wixproj /p:Configuration=Release
@@ -53,3 +44,4 @@ jobs:
           name: MSI-Package
           path: |
             Installer\bin\Release\*.msi
+            Installer\bin\Release\*.cab

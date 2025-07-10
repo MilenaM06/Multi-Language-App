@@ -1,6 +1,6 @@
 ﻿namespace MyNetFrameworkApp
 {
-    public class Greeter
+    public class GreeterFramework
     {
         public static string SayHello()
         {

@@ -1,6 +1,6 @@
 ﻿namespace MyNetStandardLib
 {
-    public class Greeter
+    public class GreeterStandard
     {
         public static string SayHello()
         {
