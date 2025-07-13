@@ -1,4 +1,4 @@
-﻿namespace MyNetFrameworkApp
+﻿namespace NetFrameworkApp
 {
     public class GreeterFramework
     {

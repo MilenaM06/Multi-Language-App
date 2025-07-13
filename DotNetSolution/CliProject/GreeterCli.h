@@ -1,9 +1,8 @@
 #pragma once
-
 using namespace System;
 
-namespace MyCliProject {
-    public ref class Greeter
+namespace CliProject {
+    public ref class GreeterCli
     {
     public:
         String^ SayHello()
@@ -12,3 +11,5 @@ namespace MyCliProject {
         }
     };
 }
+
+

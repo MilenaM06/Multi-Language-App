@@ -1,4 +1,4 @@
-﻿namespace MyNetStandardLib
+﻿namespace NetStandardLib
 {
     public class GreeterStandard
     {
