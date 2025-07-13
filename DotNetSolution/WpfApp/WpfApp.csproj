@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <PlatformTarget>x64</PlatformTarget>
+    </PropertyGroup>
+
+    <ItemGroup>
+    <ProjectReference Include="..\CliProject\CliProject.vcxproj" />
+    <ProjectReference Include="..\NetFrameworkApp\NetFrameworkApp.csproj" />
+    <ProjectReference Include="..\NetStandardLib\NetStandardLib.csproj" />
+    </ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Images\logo.png" />
+		<Content Include="Images\logo.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\FortranSolution\FortranProject\x64\Release\FortranProject.dll">
+			<Link>FortranProject.dll</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>

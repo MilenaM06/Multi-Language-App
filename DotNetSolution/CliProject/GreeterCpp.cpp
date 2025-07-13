@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "GreeterCpp.h"
-#include "../MyCppProject/GreeterCppNative.h"  
+#include "../CppProject/GreeterCppNative.h"  
 
 GreeterCpp::GreeterCpp()
 {

@@ -1,12 +1,17 @@
-﻿using System.Windows;
-using MyCliProject;
-using MyNetFrameworkApp;
-using MyNetStandardLib;
+﻿using System.Runtime.InteropServices;
+using System.Text;
+using System.Windows;
+using NetStandardLib;
+using NetFrameworkApp;
+using CliProject;
 
-namespace MyWpfApp
+namespace WpfApp
 {
     public partial class MainWindow : Window
     {
+        [DllImport("FortranProject.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "hello")]
+        public static extern void hello([Out] StringBuilder buf, int buflen);
+
         public MainWindow()
         {
             InitializeComponent();
@@ -38,5 +43,19 @@ namespace MyWpfApp
             OutputTextBox.Text = message;
         }
 
+        private void Fortran_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                StringBuilder sb = new StringBuilder(256);
+                hello(sb, sb.Capacity);
+                OutputTextBox.Text = sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+         
+        }
     }
 }

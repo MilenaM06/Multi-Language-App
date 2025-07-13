@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>3.10</ProductVersion>
-    <ProjectGuid>29f1a635-5429-42cf-9cb7-7f02e131860b</ProjectGuid>
+    <ProjectGuid>b0df246d-8e0f-454c-bd25-8c6304b6dc2e</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
     <OutputName>Installer</OutputName>
     <OutputType>Package</OutputType>
@@ -19,6 +19,7 @@
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Images.wxs" />
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
