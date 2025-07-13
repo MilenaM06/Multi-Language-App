@@ -149,8 +149,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD:DotNetSolution/CliProject/CliProject.vcxproj
     <ProjectReference Include="..\CppProject\CppProject.vcxproj">
       <Project>{114b412d-31bc-429c-ad24-1fa440f05b17}</Project>
+=======
+    <ProjectReference Include="..\MyCppProject\MyCppProject.vcxproj">
+      <Project>{440ce841-b089-44a4-8144-5bd081c02d11}</Project>
+>>>>>>> main:MyCliProject/MyCliProject.vcxproj
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "GreeterCpp.h"
+<<<<<<< HEAD:DotNetSolution/CliProject/GreeterCpp.cpp
 #include "../CppProject/GreeterCppNative.h"  
+=======
+#include "../MyCppProject/GreeterCppNative.h"  
+>>>>>>> main:MyCliProject/GreeterCpp.cpp
 
 GreeterCpp::GreeterCpp()
 {
