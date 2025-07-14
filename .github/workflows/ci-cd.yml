@@ -34,7 +34,7 @@ jobs:
 
       - name: List CppProject outputs
         run: |
-          dir DotNetSolution\CppProject\Release
+          dir DotNetSolution\CppProject\x64\Release
 
       - name: Build Cli Project
         run: msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=Release
