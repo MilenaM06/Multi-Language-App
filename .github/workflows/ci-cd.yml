@@ -23,9 +23,6 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Install WiX Toolset 3.14
-        run: choco install wixtoolset --version=3.14.1.20250415 --yes
-
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v2
 
@@ -34,6 +31,10 @@ jobs:
 
       - name: Build Cpp Project
         run: msbuild DotNetSolution\CppProject\CppProject.vcxproj /p:Configuration=Release
+
+      - name: List CppProject outputs
+        run: |
+          dir DotNetSolution\CppProject\Release
 
       - name: Build Cli Project
         run: msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=Release
