@@ -43,8 +43,11 @@ jobs:
       - name: Build CLI Project
         run: msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=Release /p:Platform=x64
 
+      - name: Build CLI Test Project
+        run: msbuild DotNetSolution\Tests\CliTests\CliTests.csproj /p:Configuration=Release /p:Platform=x64
+
       - name: Build and Run CLI Tests
-        run: dotnet test DotNetSolution/Tests/CliTests/CliTests.csproj --configuration Release --logger trx
+        run: dotnet test DotNetSolution/Tests/CliTests/CliTests.csproj --configuration Release --no-build --logger trx
 
       - name: Build .NET Framework Project
         run: msbuild DotNetSolution\NetFrameworkApp\NetFrameworkApp.csproj /p:Configuration=Release /p:Platform=x64
