@@ -67,9 +67,6 @@ jobs:
           name: cli-results
           path: CliTestResults/
 
-      - name: Build Wpf Application
-        run: msbuild DotNetSolution\WpfApp\WpfApp.csproj /p:Configuration=Release
-
       - name: Build .NET Standard Project
         run: msbuild DotNetSolution\NetStandardLib\NetStandardLib.csproj /p:Configuration=Release
 
@@ -95,4 +92,4 @@ jobs:
           path: DotNetTestResults/
 
       - name: Build Wpf Application
-        run: msbuild DotNetSolution\WpfApp\WpfApp.csproj /p:Configuration=Release  /p:Platform=x64
+        run: msbuild DotNetSolution\WpfApp\WpfApp.csproj /p:Configuration=Release
