@@ -50,7 +50,7 @@ jobs:
         run: msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=Release /p:Platform=x64
 
       - name: Build CLI Test Project
-        run: msbuild DotNetSolution\Tests\CliTests\CliTests.csproj /p:Configuration=Release
+        run: msbuild DotNetSolution\Tests\CliTests\CliTests.csproj /p:Configuration=Release /p:Platform=x64
 
       - name: Run CLI Tests
         shell: bash
