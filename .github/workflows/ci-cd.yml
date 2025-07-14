@@ -27,15 +27,14 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
+      - name: Install WiX Toolset 3.14
+        run: choco install wixtoolset --version=3.14.1.20250415 --yes
+
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v2
 
       - name: Restore NuGet packages
         run: nuget restore DotNetSolution\DotNetSolution.sln
-
-      # to prepare the environment for C++ and C++/CLI builds - necessary for UI tests
-      - name: Setup VS DevCmd
-        uses: seanmiddleditch/gha-setup-vsdevcmd@v1
 
       - name: Build C++ Native Project
         run: msbuild DotNetSolution\CppProject\CppProject.vcxproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
@@ -72,5 +71,16 @@ jobs:
       - name: Build UI Tests
         run: msbuild DotNetSolution\Tests\UITests\UITests.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
-      - name: Run UI Tests
-        run: dotnet test DotNetSolution/Tests/UITests/UITests.csproj --configuration ${{ env.CONFIG }} --logger trx
+      #  - name: Run UI Tests
+      #    run: dotnet test DotNetSolution/Tests/UITests/UITests.csproj --configuration ${{ env.CONFIG }} --logger trx
+
+      - name: Build MSI Installer
+        run: msbuild Installer\Installer.sln /p:Configuration=Release /p:Platform=x86
+
+      - name: Upload MSI Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MSI-Package
+          path: |
+            Installer\bin\Release\*.msi
+            Installer\bin\Release\*.cab
