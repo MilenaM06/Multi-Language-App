@@ -8,7 +8,8 @@ namespace UITests
         Process? appProcess;
         AutomationElement mainWindow;
 
-        private const string AppPath = @"C:\Users\Milena\Desktop\Multi-Language-App\DotNetSolution\WpfApp\bin\Release\net8.0-windows\WpfApp.exe";
+        private static readonly string AppPath =
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MultiLangApp", "WpfApp.exe");
 
         [SetUp]
         public void Setup()
