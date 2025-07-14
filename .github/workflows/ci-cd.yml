@@ -36,6 +36,7 @@ jobs:
         run: msbuild DotNetSolution\DotNetSolution.sln /p:Configuration=Release
 
       - name: Run .NET Tests
+        shell: bash
         run: |
           dotnet test DotNetSolution/Tests/DotNetTests/DotNetTests.csproj \
             --configuration Release \
