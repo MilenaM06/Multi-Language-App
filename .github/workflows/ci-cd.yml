@@ -32,25 +32,22 @@ jobs:
       - name: Restore NuGet packages
         run: msbuild DotNetSolution\DotNetSolution.sln /t:Restore
 
-      - name: Install Intel OneAPI Base & HPC Toolkit
-        shell: cmd
-        run: |
-          curl -L -o basekit.exe https://registrationcenter-download.intel.com/akdlm/IRC_NAS/09a8acaf-265f-4460-866c-a3375ed5b4ff/intel-oneapi-base-toolkit-2025.2.0.591_offline.exe
-          curl -L -o hpckit.exe https://registrationcenter-download.intel.com/akdlm/IRC_NAS/3bbdaf75-6728-492e-a18c-be654dae9ee2/intel-oneapi-hpc-toolkit-2025.2.0.576_offline.exe
-          basekit.exe --silent --eula accept --a --components=intel.oneapi.win.ifort-compiler
-          hpckit.exe  --silent --eula accept --a --components=intel.oneapi.win.ifort-compiler
-
-      - name: Build Fortran Solution
-        shell: cmd
-        run: |
-          :: set up Intel OneAPI environment
-          call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
-          :: go to workspace
-          cd %GITHUB_WORKSPACE%
-          devenv.com FortranSolution\FortranSolution.sln /Build "Release|x64"
-
       - name: Build DotNet Solution
         run: msbuild DotNetSolution\DotNetSolution.sln /p:Configuration=Release
+
+      - name: Run .NET Tests
+        run: |
+          dotnet test DotNetSolution/Tests/DotNetTests/DotNetTests.csproj`
+            --configuration Release `
+            --no-build `
+            --logger trx `
+            --results-directory DotNetTestResults
+
+      - name: Publish .NET Test Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: dotnet-test-results
+          path: DotNetTestResults/
 
       - name: Build MSI Installer
         run: msbuild Installer\Installer.sln /p:Configuration=Release /p:Platform=x86
