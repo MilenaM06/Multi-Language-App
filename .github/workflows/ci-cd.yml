@@ -14,6 +14,10 @@ jobs:
 
     runs-on: windows-latest
 
+    env:
+      CONFIG: Release
+      PLATFORM: x64
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,42 +27,40 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Install WiX Toolset 3.14
-        run: choco install wixtoolset --version=3.14.1.20250415 --yes
-
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v2
 
       - name: Restore NuGet packages
-        run: msbuild DotNetSolution\DotNetSolution.sln /t:Restore
+        run: nuget restore DotNetSolution\DotNetSolution.sln
 
-      - name: Install Intel OneAPI Base & HPC Toolkit
-        shell: cmd
+      - name: Build C++ Native Project
+        run: msbuild DotNetSolution\CppProject\CppProject.vcxproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
+
+      - name: Build C++ Native Tests
+        run: msbuild DotNetSolution\Tests\CppNativeTests\CppNativeTests.vcxproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
+
+      - name: Run C++ Native Tests
         run: |
-          curl -L -o basekit.exe https://registrationcenter-download.intel.com/akdlm/IRC_NAS/09a8acaf-265f-4460-866c-a3375ed5b4ff/intel-oneapi-base-toolkit-2025.2.0.591_offline.exe
-          curl -L -o hpckit.exe https://registrationcenter-download.intel.com/akdlm/IRC_NAS/3bbdaf75-6728-492e-a18c-be654dae9ee2/intel-oneapi-hpc-toolkit-2025.2.0.576_offline.exe
-          basekit.exe --silent --eula accept --a --components=intel.oneapi.win.ifort-compiler
-          hpckit.exe  --silent --eula accept --a --components=intel.oneapi.win.ifort-compiler
+          mkdir CppTestResults
+          .\DotNetSolution\Tests\CppNativeTests\x64\Release\CppNativeTests.exe --gtest_output=xml:CppTestResults\CppTestResults.xml
 
-      - name: Build Fortran Solution
-        shell: cmd
-        run: |
-          :: set up Intel OneAPI environment
-          call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
-          :: go to workspace
-          cd %GITHUB_WORKSPACE%
-          devenv.com FortranSolution\FortranSolution.sln /Build "Release|x64"
+      - name: Build CLI Project
+        run: msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
-      - name: Build DotNet Solution
-        run: msbuild DotNetSolution\DotNetSolution.sln /p:Configuration=Release
+      - name: Build CLI Tests
+        run: msbuild DotNetSolution\Tests\CliTests\CliTests.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
-      - name: Build MSI Installer
-        run: msbuild Installer\Installer.sln /p:Configuration=Release /p:Platform=x86
+      - name: Run CLI Tests
+        run: dotnet test DotNetSolution/Tests/CliTests/CliTests.csproj --configuration ${{ env.CONFIG }} --no-build --logger trx
 
-      - name: Upload MSI Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: MSI-Package
-          path: |
-            Installer\bin\Release\*.msi
-            Installer\bin\Release\*.cab
+      - name: Build .NET Framework Project
+        run: msbuild DotNetSolution\NetFrameworkApp\NetFrameworkApp.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
+
+      - name: Build .NET Standard Project
+        run: msbuild DotNetSolution\NetStandardLib\NetStandardLib.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
+
+      - name: Build and Run .NET Tests
+        run: dotnet test DotNetSolution/Tests/DotNetTests/DotNetTests.csproj --configuration ${{ env.CONFIG }}  --logger trx
+
+      - name: Build Wpf Application
+        run: msbuild DotNetSolution\WpfApp\WpfApp.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}

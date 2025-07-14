@@ -9,8 +9,8 @@ namespace WpfApp
 {
     public partial class MainWindow : Window
     {
-        [DllImport("FortranProject.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "hello")]
-        public static extern void hello([Out] StringBuilder buf, int buflen);
+       // [DllImport("FortranProject.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "hello")]
+       // public static extern void hello([Out] StringBuilder buf, int buflen);
 
         public MainWindow()
         {
@@ -45,6 +45,7 @@ namespace WpfApp
 
         private void Fortran_Click(object sender, RoutedEventArgs e)
         {
+            /*
             try
             {
                 StringBuilder sb = new StringBuilder(256);
@@ -55,7 +56,8 @@ namespace WpfApp
             {
                 MessageBox.Show(ex.Message, "Error");
             }
-         
+            */
+            OutputTextBox.Text = "Hello there!";
         }
     }
 }

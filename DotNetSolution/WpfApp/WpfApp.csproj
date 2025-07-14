@@ -21,12 +21,12 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
-
+<!--
 	<ItemGroup>
 		<None Include="..\..\FortranSolution\FortranProject\x64\Release\FortranProject.dll">
 			<Link>FortranProject.dll</Link>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
-
+-->
 </Project>
