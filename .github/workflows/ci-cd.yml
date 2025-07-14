@@ -47,7 +47,7 @@ jobs:
       - name: Build CLI Project
         run: msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
-      - name: Build CLI Test Project
+      - name: Build CLI Tests
         run: msbuild DotNetSolution\Tests\CliTests\CliTests.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
       - name: Run CLI Tests
