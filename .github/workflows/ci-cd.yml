@@ -46,10 +46,13 @@ jobs:
           name: cpp-test-results
           path: CppTestResults/
 
-      - name: Build Cli Project
+      - name: Build CLI Project
         run: msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=Release /p:Platform=x64
 
-      - name: Run .NET Tests
+      - name: Build CLI Test Project
+        run: msbuild DotNetSolution\Tests\CliTests\CliTests.csproj /p:Configuration=Release
+
+      - name: Run CLI Tests
         shell: bash
         run: |
           dotnet test DotNetSolution/Tests/CliTests/CliTests.csproj \
