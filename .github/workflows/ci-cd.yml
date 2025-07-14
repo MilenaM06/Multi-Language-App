@@ -73,17 +73,8 @@ jobs:
       - name: Build .NET Framework Project
         run: msbuild DotNetSolution\NetFrameworkApp\NetFrameworkApp.csproj /p:Configuration=Release /p:Platform=x64
 
-      - name: Build .NET Test Project
-        run: msbuild DotNetSolution\Tests\DotNetTests\DotNetTests.csproj /p:Configuration=Release /p:Platform=x64
-
       - name: Run .NET Tests
-        shell: bash
-        run: |
-          dotnet test DotNetSolution/Tests/DotNetTests/DotNetTests.csproj \
-            --configuration Release \
-            --no-build \
-            --logger trx \
-            --results-directory DotNetTestResults
+        run: dotnet test DotNetSolution/Tests/DotNetTests/DotNetTests.csproj --configuration Release --logger trx --results-directory DotNetTestResults
 
       - name: Publish .NET Test Results
         uses: actions/upload-artifact@v4
