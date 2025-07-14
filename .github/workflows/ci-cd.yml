@@ -64,3 +64,9 @@ jobs:
 
       - name: Build Wpf Application
         run: msbuild DotNetSolution\WpfApp\WpfApp.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
+
+      - name: Build UI Tests
+        run: msbuild DotNetSolution\Tests\UITests\UITests.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
+
+      - name: Run UI Tests
+        run: dotnet test DotNetSolution/Tests/UITests/UITests.csproj --configuration ${{ env.CONFIG }} --logger trx
