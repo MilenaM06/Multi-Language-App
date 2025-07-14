@@ -50,13 +50,13 @@ jobs:
         run: msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=Release /p:Platform=x64
 
       - name: Build .NET Standard Project
-        run: msbuild DotNetSolution\NetStandardLib\NetStandardLib.csproj /p:Configuration=Release
+        run: msbuild DotNetSolution\NetStandardLib\NetStandardLib.csproj /p:Configuration=Release /p:Platform=x64
 
       - name: Build .NET Framework Project
-        run: msbuild DotNetSolution\NetFrameworkApp\NetFrameworkApp.csproj /p:Configuration=Release
+        run: msbuild DotNetSolution\NetFrameworkApp\NetFrameworkApp.csproj /p:Configuration=Release /p:Platform=x64
 
       - name: Build .NET Test Project
-        run: msbuild DotNetSolution\Tests\DotNetTests\DotNetTests.csproj /p:Configuration=Release
+        run: msbuild DotNetSolution\Tests\DotNetTests\DotNetTests.csproj /p:Configuration=Release /p:Platform=x64
 
       - name: Run .NET Tests
         shell: bash
