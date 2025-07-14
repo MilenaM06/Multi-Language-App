@@ -49,14 +49,32 @@ jobs:
       - name: Build Cli Project
         run: msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=Release /p:Platform=x64
 
+      - name: Run .NET Tests
+        shell: bash
+        run: |
+          dotnet test DotNetSolution/Tests/CliTests/CliTests.csproj \
+            --configuration Release \
+            --no-build \
+            --logger trx \
+            --results-directory CliTestResults
+
+      - name: Publish CLI Test Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: cli-results
+          path: CliTestResults/
+
+      - name: Build Wpf Application
+        run: msbuild DotNetSolution\WpfApp\WpfApp.csproj /p:Configuration=Release
+
       - name: Build .NET Standard Project
-        run: msbuild DotNetSolution\NetStandardLib\NetStandardLib.csproj /p:Configuration=Release /p:Platform=x64
+        run: msbuild DotNetSolution\NetStandardLib\NetStandardLib.csproj /p:Configuration=Release
 
       - name: Build .NET Framework Project
-        run: msbuild DotNetSolution\NetFrameworkApp\NetFrameworkApp.csproj /p:Configuration=Release /p:Platform=x64
+        run: msbuild DotNetSolution\NetFrameworkApp\NetFrameworkApp.csproj /p:Configuration=Release
 
       - name: Build .NET Test Project
-        run: msbuild DotNetSolution\Tests\DotNetTests\DotNetTests.csproj /p:Configuration=Release /p:Platform=x64
+        run: msbuild DotNetSolution\Tests\DotNetTests\DotNetTests.csproj /p:Configuration=Release
 
       - name: Run .NET Tests
         shell: bash

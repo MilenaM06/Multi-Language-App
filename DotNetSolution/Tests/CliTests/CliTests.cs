@@ -1,6 +1,6 @@
-﻿using CliProject;
+using CliProject;
 
-namespace DotNetTests
+namespace CliTests
 {
     public class CliTests
     {
