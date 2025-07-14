@@ -87,6 +87,6 @@ jobs:
           msiexec /i Installer\bin\Release\Installer.msi /quiet /norestart
 
       - name: Run UI Tests (on installed app)
-        run: dotnet test DotNetSolution/Tests/UITests/UITests.csproj --configuration ${{ env.CONFIG }} --logger trx
+        run: dotnet test DotNetSolution/Tests/UITests/UITests.csproj --configuration ${{ env.CONFIG }} --no-build --logger trx
         env:
           APP_DEPLOY_PATH: C:\Users\runneradmin\AppData\Local\MultiLangApp\WpfApp.exe
