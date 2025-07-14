@@ -14,6 +14,10 @@ jobs:
 
     runs-on: windows-latest
 
+    env:
+      CONFIG: Release
+      PLATFORM: x64
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,10 +34,10 @@ jobs:
         run: nuget restore DotNetSolution\DotNetSolution.sln
 
       - name: Build C++ Native Project
-        run: msbuild DotNetSolution\CppProject\CppProject.vcxproj /p:Configuration=Release /p:Platform=x64
+        run: msbuild DotNetSolution\CppProject\CppProject.vcxproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
       - name: Build C++ Native Tests
-        run: msbuild DotNetSolution\Tests\CppNativeTests\CppNativeTests.vcxproj /p:Configuration=Release /p:Platform=x64
+        run: msbuild DotNetSolution\Tests\CppNativeTests\CppNativeTests.vcxproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
       - name: Run C++ Native Tests
         run: |
@@ -41,22 +45,22 @@ jobs:
           .\DotNetSolution\Tests\CppNativeTests\x64\Release\CppNativeTests.exe --gtest_output=xml:CppTestResults\CppTestResults.xml
 
       - name: Build CLI Project
-        run: msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=Release /p:Platform=x64
+        run: msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
       - name: Build CLI Test Project
-        run: msbuild DotNetSolution\Tests\CliTests\CliTests.csproj /p:Configuration=Release /p:Platform=x64
+        run: msbuild DotNetSolution\Tests\CliTests\CliTests.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
-      - name: Build and Run CLI Tests
-        run: dotnet test DotNetSolution/Tests/CliTests/CliTests.csproj --configuration Release --no-build --logger trx
+      - name: Run CLI Tests
+        run: dotnet test DotNetSolution/Tests/CliTests/CliTests.csproj --configuration ${{ env.CONFIG }} --no-build --logger trx
 
       - name: Build .NET Framework Project
-        run: msbuild DotNetSolution\NetFrameworkApp\NetFrameworkApp.csproj /p:Configuration=Release /p:Platform=x64
+        run: msbuild DotNetSolution\NetFrameworkApp\NetFrameworkApp.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
       - name: Build .NET Standard Project
-        run: msbuild DotNetSolution\NetStandardLib\NetStandardLib.csproj /p:Configuration=Release /p:Platform=x64
+        run: msbuild DotNetSolution\NetStandardLib\NetStandardLib.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
       - name: Build and Run .NET Tests
-        run: dotnet test DotNetSolution/Tests/DotNetTests/DotNetTests.csproj --configuration Release --logger trx
+        run: dotnet test DotNetSolution/Tests/DotNetTests/DotNetTests.csproj --configuration ${{ env.CONFIG }}  --logger trx
 
       - name: Build Wpf Application
-        run: msbuild DotNetSolution\WpfApp\WpfApp.csproj /p:Configuration=Release /p:Platform=x64
+        run: msbuild DotNetSolution\WpfApp\WpfApp.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
