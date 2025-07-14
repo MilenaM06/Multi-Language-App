@@ -27,6 +27,9 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
+      - name: Install WiX Toolset 3.14
+        run: choco install wixtoolset --version=3.14.1.20250415 --yes
+
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v2
 
@@ -64,3 +67,26 @@ jobs:
 
       - name: Build Wpf Application
         run: msbuild DotNetSolution\WpfApp\WpfApp.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
+
+      - name: Build UI Tests
+        run: msbuild DotNetSolution\Tests\UITests\UITests.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
+
+      - name: Build MSI Installer
+        run: msbuild Installer\Installer.sln /p:Configuration=Release /p:Platform=x86
+
+      - name: Upload MSI Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MSI-Package
+          path: |
+            Installer\bin\Release\*.msi
+            Installer\bin\Release\*.cab
+
+      - name: Install MSI on runner
+        run: |
+          msiexec /i Installer\bin\Release\Installer.msi /quiet /norestart
+
+      - name: Run UI Tests (on installed app)
+        run: dotnet test DotNetSolution/Tests/UITests/UITests.csproj --configuration ${{ env.CONFIG }} --no-build --logger trx
+        env:
+          APP_DEPLOY_PATH: C:\Users\runneradmin\AppData\Local\MultiLangApp\WpfApp.exe

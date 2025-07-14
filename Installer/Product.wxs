@@ -28,11 +28,11 @@
 
 			<Component Id="WpfAppExe" Guid="f6b5a2a3-7ad0-4e1d-923d-6b98dcb617e3">
 				<File Id="WpfAppExeFile"
-					  Source="..\DotNetSolution\WpfApp\bin\Release\net8.0-windows\WpfApp.exe" />
+					  Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\WpfApp.exe" />
 				<File Id="WpfAppDllFile"
-					  Source="..\DotNetSolution\WpfApp\bin\Release\net8.0-windows\WpfApp.dll" />
+					  Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\WpfApp.dll" />
 				<File Id="RuntimeConfigJson"
-					  Source="..\DotNetSolution\WpfApp\bin\Release\net8.0-windows\WpfApp.runtimeconfig.json" />
+					  Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\WpfApp.runtimeconfig.json" />
 				<Shortcut Id="DesktopShortcut"
 						  Directory="DesktopFolder"
 						  Name="MultiLangApp"
@@ -47,10 +47,10 @@
 							   KeyPath="yes"/>
 				<RemoveFolder Id="RemoveAppFolder" Directory="INSTALLFOLDER" On="uninstall"/>
 			</Component>
-
+<!--
 			<Component Id="FortranProjectDll" Guid="d3c273e4-9a55-407f-b1b4-55c24a67c177">
 				<File Id="FortranProjectDllFile"
-					  Source="..\DotNetSolution\WpfApp\bin\Release\net8.0-windows\FortranProject.dll" />
+					  Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\FortranProject.dll" />
 				<RegistryValue Root="HKCU"
 							   Key="Software\MultiLangApp\FortranProject"
 							   Name="installed"
@@ -58,10 +58,10 @@
 							   Value="1"
 							   KeyPath="yes"/>
 			</Component>
-
+-->
 			<Component Id="CliProjectDll" Guid="b1f4e97a-2c6d-4c75-a0a4-998e1e465df7">
 				<File Id="CliProjectDllFile"
-					  Source="..\DotNetSolution\WpfApp\bin\Release\net8.0-windows\CliProject.dll"/>
+					  Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\CliProject.dll"/>
 				<RegistryValue Root="HKCU"
 							   Key="Software\MultiLangApp\CliProject"
 							   Name="installed"
@@ -72,7 +72,7 @@
 
 			<Component Id="NetStandardLibDll" Guid="a2c4e8d1-45ab-4e1b-9c56-88e7686e3ad1">
 				<File Id="NetStandardLibDllFile"
-					  Source="..\DotNetSolution\WpfApp\bin\Release\net8.0-windows\NetStandardLib.dll" />
+					  Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\NetStandardLib.dll" />
 				<RegistryValue Root="HKCU"
 							   Key="Software\MultiLangApp\NetStandardLib"
 							   Name="installed"
@@ -83,7 +83,7 @@
 
 			<Component Id="NetFrameworkAppDll" Guid="b9e5187c-3fcd-4ce6-81b6-b08b714ef22c">
 				<File Id="NetFrameworkAppDllFile"
-					  Source="..\DotNetSolution\WpfApp\bin\Release\net8.0-windows\NetFrameworkApp.dll" />
+					  Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\NetFrameworkApp.dll" />
 				<RegistryValue Root="HKCU"
 							   Key="Software\MultiLangApp\NetFrameworkApp"
 							   Name="installed"
