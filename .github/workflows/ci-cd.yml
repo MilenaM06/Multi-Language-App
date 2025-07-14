@@ -26,61 +26,34 @@ jobs:
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v2
 
-      - name: Restore NuGet packages (native + .NET)
+      - name: Restore NuGet packages
         run: nuget restore DotNetSolution\DotNetSolution.sln
 
-      - name: Build Cpp Project
+      - name: Build C++ Native Project
         run: msbuild DotNetSolution\CppProject\CppProject.vcxproj /p:Configuration=Release /p:Platform=x64
 
-      - name: Build C++ Test Project
+      - name: Build C++ Native Tests
         run: msbuild DotNetSolution\Tests\CppNativeTests\CppNativeTests.vcxproj /p:Configuration=Release /p:Platform=x64
 
-      - name: Run C++ Google Tests
+      - name: Run C++ Native Tests
         run: |
           mkdir CppTestResults
           .\DotNetSolution\Tests\CppNativeTests\x64\Release\CppNativeTests.exe --gtest_output=xml:CppTestResults\CppTestResults.xml
 
-      - name: Upload C++ Test Results
-        uses: actions/upload-artifact@v4
-        with:
-          name: cpp-test-results
-          path: CppTestResults/
-
       - name: Build CLI Project
         run: msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=Release /p:Platform=x64
 
-      - name: Build CLI Test Project
-        run: msbuild DotNetSolution\Tests\CliTests\CliTests.csproj /p:Configuration=Release /p:Platform=x64
-
-      - name: Run CLI Tests
-        shell: bash
-        run: |
-          dotnet test DotNetSolution/Tests/CliTests/CliTests.csproj \
-            --configuration Release \
-            --no-build \
-            --logger trx \
-            --results-directory CliTestResults
-
-      - name: Publish CLI Test Results
-        uses: actions/upload-artifact@v4
-        with:
-          name: cli-results
-          path: CliTestResults/
-
-      - name: Build .NET Standard Project
-        run: msbuild DotNetSolution\NetStandardLib\NetStandardLib.csproj /p:Configuration=Release /p:Platform=x64
+      - name: Build and Run CLI Tests
+        run: dotnet test DotNetSolution/Tests/CliTests/CliTests.csproj --configuration Release --logger trx
 
       - name: Build .NET Framework Project
         run: msbuild DotNetSolution\NetFrameworkApp\NetFrameworkApp.csproj /p:Configuration=Release /p:Platform=x64
 
-      - name: Run .NET Tests
-        run: dotnet test DotNetSolution/Tests/DotNetTests/DotNetTests.csproj --configuration Release --logger trx --results-directory DotNetTestResults
+      - name: Build .NET Standard Project
+        run: msbuild DotNetSolution\NetStandardLib\NetStandardLib.csproj /p:Configuration=Release /p:Platform=x64
 
-      - name: Publish .NET Test Results
-        uses: actions/upload-artifact@v4
-        with:
-          name: dotnet-test-results
-          path: DotNetTestResults/
+      - name: Build and Run .NET Tests
+        run: dotnet test DotNetSolution/Tests/DotNetTests/DotNetTests.csproj --configuration Release --logger trx
 
       - name: Build Wpf Application
         run: msbuild DotNetSolution\WpfApp\WpfApp.csproj /p:Configuration=Release /p:Platform=x64
