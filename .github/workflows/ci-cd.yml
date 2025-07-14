@@ -49,3 +49,14 @@ jobs:
         with:
           name: dotnet-test-results
           path: DotNetTestResults/
+
+      - name: Run C++ Google Tests
+        run: |
+          mkdir CppTestResults
+          .\DotNetSolution\Tests\CppNativeTests\x64\Release\CppNativeTests.exe --gtest_output=xml:CppTestResults\CppTestResults.xml
+
+      - name: Upload C++ Test Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpp-test-results
+          path: CppTestResults/
