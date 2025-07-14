@@ -11,11 +11,27 @@ namespace UITests
         private static readonly string AppPath =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MultiLangApp", "WpfApp.exe");
 
+        private void WaitUntil(Func<bool> condition, int timeoutMs = 10000, int pollIntervalMs = 100)
+        {
+            var sw = Stopwatch.StartNew();
+            while (sw.ElapsedMilliseconds < timeoutMs)
+            {
+                if (condition())
+                    return;
+                Thread.Sleep(pollIntervalMs);
+            }
+            Assert.Fail("Condition was not met within timeout.");
+        }
+
         [SetUp]
         public void Setup()
         {
             appProcess = Process.Start(AppPath);
-            Thread.Sleep(3000);
+            WaitUntil(() =>
+                AutomationElement.RootElement.FindFirst(
+                    TreeScope.Children,
+                    new PropertyCondition(AutomationElement.NameProperty, "Multi-Language App"))
+                != null, timeoutMs: 5000);
 
             mainWindow = AutomationElement.RootElement.FindFirst(
                 TreeScope.Children,
@@ -34,14 +50,14 @@ namespace UITests
             Assert.IsNotNull(invokePattern, $"Button '{buttonName}' does not support InvokePattern");
             invokePattern.Invoke();
 
-            Thread.Sleep(3000);
-
             var outputBox = mainWindow.FindFirst(TreeScope.Descendants,
                 new PropertyCondition(AutomationElement.AutomationIdProperty, "OutputTextBox"));
             Assert.IsNotNull(outputBox, "OutputTextBox not found");
 
             var valuePattern = outputBox.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
             Assert.That(valuePattern, Is.Not.Null, "OutputTextBox does not support ValuePattern");
+
+            WaitUntil(() => valuePattern.Current.Value == expectedOutput, timeoutMs: 10000);
 
             Assert.That(valuePattern.Current.Value, Is.EqualTo(expectedOutput));
         }
