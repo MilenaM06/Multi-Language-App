@@ -29,18 +29,18 @@ jobs:
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v2
 
-      - name: Restore NuGet packages
-        run: msbuild DotNetSolution\DotNetSolution.sln /t:Restore
+      - name: Restore NuGet packages (native + .NET)
+        run: nuget restore DotNetSolution\DotNetSolution.sln
 
       - name: Build DotNet Solution
         run: msbuild DotNetSolution\DotNetSolution.sln /p:Configuration=Release
 
       - name: Run .NET Tests
         run: |
-          dotnet test DotNetSolution/Tests/DotNetTests/DotNetTests.csproj`
-            --configuration Release `
-            --no-build `
-            --logger trx `
+          dotnet test DotNetSolution/Tests/DotNetTests/DotNetTests.csproj \
+            --configuration Release \
+            --no-build \
+            --logger trx \
             --results-directory DotNetTestResults
 
       - name: Publish .NET Test Results
