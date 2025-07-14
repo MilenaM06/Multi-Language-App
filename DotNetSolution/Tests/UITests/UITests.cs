@@ -15,7 +15,7 @@ namespace UITests
         public void Setup()
         {
             appProcess = Process.Start(AppPath);
-            Thread.Sleep(2000);
+            Thread.Sleep(3000);
 
             mainWindow = AutomationElement.RootElement.FindFirst(
                 TreeScope.Children,
@@ -34,7 +34,7 @@ namespace UITests
             Assert.IsNotNull(invokePattern, $"Button '{buttonName}' does not support InvokePattern");
             invokePattern.Invoke();
 
-            Thread.Sleep(500);
+            Thread.Sleep(3000);
 
             var outputBox = mainWindow.FindFirst(TreeScope.Descendants,
                 new PropertyCondition(AutomationElement.AutomationIdProperty, "OutputTextBox"));
