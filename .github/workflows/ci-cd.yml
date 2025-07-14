@@ -32,7 +32,7 @@ jobs:
       - name: Restore NuGet packages (native + .NET)
         run: nuget restore DotNetSolution\DotNetSolution.sln
 
-      - name: Build DotNet Solution
+      - name: Build .NET Solution
         run: msbuild DotNetSolution\DotNetSolution.sln /p:Configuration=Release
 
       - name: Run .NET Tests
