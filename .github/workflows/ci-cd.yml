@@ -30,7 +30,7 @@ jobs:
         run: nuget restore DotNetSolution\DotNetSolution.sln
 
       - name: Build Cpp Project
-        run: msbuild DotNetSolution\CppProject\CppProject.vcxproj /p:Configuration=Release
+        run: msbuild DotNetSolution\CppProject\CppProject.vcxproj /p:Configuration=Release /p:Platform=x64
 
       - name: List CppProject outputs
         run: |
