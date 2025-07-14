@@ -56,7 +56,7 @@ jobs:
         run: msbuild DotNetSolution\NetFrameworkApp\NetFrameworkApp.csproj /p:Configuration=Release
 
       - name: Build .NET Test Project
-        run: msbuild DotNetSolution\Tests\DotNetTests\DotNetTests.vcxproj /p:Configuration=Release /p:Platform=x64
+        run: msbuild DotNetSolution\Tests\DotNetTests\DotNetTests.csproj /p:Configuration=Release /p:Platform=x64
 
       - name: Run .NET Tests
         shell: bash
