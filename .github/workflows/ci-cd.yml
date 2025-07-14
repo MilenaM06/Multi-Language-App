@@ -32,8 +32,17 @@ jobs:
       - name: Restore NuGet packages (native + .NET)
         run: nuget restore DotNetSolution\DotNetSolution.sln
 
-      - name: Build .NET Solution
-        run: msbuild DotNetSolution\DotNetSolution.sln /p:Configuration=Release
+      - name: Build Cpp Project
+        run: msbuild DotNetSolution\CppProject\CppProject.vcxproj /p:Configuration=Release
+
+      - name: Build Cli Project
+        run: msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=Release
+
+      - name: Build .NET Standard Project
+        run: msbuild DotNetSolution\NetStandardLib\NetStandardLib.csproj /p:Configuration=Release
+
+      - name: Build .NET Framework Project
+        run: msbuild DotNetSolution\NetFrameworkApp\NetFrameworkApp.csproj /p:Configuration=Release
 
       - name: Run .NET Tests
         shell: bash
@@ -60,3 +69,6 @@ jobs:
         with:
           name: cpp-test-results
           path: CppTestResults/
+
+      - name: Build Wpf Application
+        run: msbuild DotNetSolution\WpfApp\WpfApp.csproj /p:Configuration=Release
