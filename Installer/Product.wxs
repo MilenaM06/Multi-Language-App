@@ -80,7 +80,7 @@
 							   Value="1"
 							   KeyPath="yes"/>
 			</Component>
-
+<!--
 			<Component Id="NetFrameworkAppDll" Guid="b9e5187c-3fcd-4ce6-81b6-b08b714ef22c">
 				<File Id="NetFrameworkAppDllFile"
 					  Source="..\DotNetSolution\WpfApp\bin\Release\net8.0-windows\NetFrameworkApp.dll" />
@@ -91,6 +91,7 @@
 							   Value="1"
 							   KeyPath="yes"/>
 			</Component>
+-->
 
 		</ComponentGroup>
 	</Fragment>
