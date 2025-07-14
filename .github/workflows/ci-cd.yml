@@ -32,6 +32,9 @@ jobs:
       - name: Build Cpp Project
         run: msbuild DotNetSolution\CppProject\CppProject.vcxproj /p:Configuration=Release /p:Platform=x64
 
+      - name: Build C++ Test Project
+        run: msbuild DotNetSolution\Tests\CppNativeTests\CppNativeTests.vcxproj /p:Configuration=Release /p:Platform=x64
+
       - name: Run C++ Google Tests
         run: |
           mkdir CppTestResults
