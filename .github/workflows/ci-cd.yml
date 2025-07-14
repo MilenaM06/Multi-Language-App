@@ -32,9 +32,16 @@ jobs:
       - name: Build Cpp Project
         run: msbuild DotNetSolution\CppProject\CppProject.vcxproj /p:Configuration=Release /p:Platform=x64
 
-      - name: List CppProject outputs
+      - name: Run C++ Google Tests
         run: |
-          dir DotNetSolution\CppProject\x64\Release
+          mkdir CppTestResults
+          .\DotNetSolution\Tests\CppNativeTests\x64\Release\CppNativeTests.exe --gtest_output=xml:CppTestResults\CppTestResults.xml
+
+      - name: Upload C++ Test Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpp-test-results
+          path: CppTestResults/
 
       - name: Build Cli Project
         run: msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=Release /p:Platform=x64
@@ -59,17 +66,6 @@ jobs:
         with:
           name: dotnet-test-results
           path: DotNetTestResults/
-
-      - name: Run C++ Google Tests
-        run: |
-          mkdir CppTestResults
-          .\DotNetSolution\Tests\CppNativeTests\x64\Release\CppNativeTests.exe --gtest_output=xml:CppTestResults\CppTestResults.xml
-
-      - name: Upload C++ Test Results
-        uses: actions/upload-artifact@v4
-        with:
-          name: cpp-test-results
-          path: CppTestResults/
 
       - name: Build Wpf Application
         run: msbuild DotNetSolution\WpfApp\WpfApp.csproj /p:Configuration=Release
