@@ -33,6 +33,10 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore DotNetSolution\DotNetSolution.sln
 
+      # to prepare the environment for C++ and C++/CLI builds - necessary for UI tests
+      - name: Setup VS DevCmd
+        uses: seanmiddleditch/gha-setup-vsdevcmd@v1
+
       - name: Build C++ Native Project
         run: msbuild DotNetSolution\CppProject\CppProject.vcxproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
