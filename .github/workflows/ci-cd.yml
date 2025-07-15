@@ -91,6 +91,11 @@ jobs:
         env:
           APP_DEPLOY_PATH: C:\Users\runneradmin\AppData\Local\MultiLangApp\WpfApp.exe
 
+      - name: List MultiLangApp contents
+        run: |
+          echo "=== MultiLangApp folder ==="
+          dir "C:\Users\runneradmin\AppData\Local\MultiLangApp" /s
+
       - name: Upload Logs Artifact
         uses: actions/upload-artifact@v4
         with:
