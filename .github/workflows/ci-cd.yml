@@ -91,6 +91,11 @@ jobs:
         env:
           APP_DEPLOY_PATH: C:\Users\runneradmin\AppData\Local\MultiLangApp\WpfApp.exe
 
+      - name: Run WpfApp to generate logs
+        run: |
+          Start-Process -FilePath "C:\Users\runneradmin\AppData\Local\MultiLangApp\WpfApp.exe"
+          Start-Sleep -Seconds 5
+
       - name: List MultiLangApp contents
         shell: pwsh
         run: |
