@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Runtime.InteropServices;
+using System.Text;
+using System.Windows;
 using NetStandardLib;
 using NetFrameworkApp;
 using CliProject;
@@ -8,8 +10,9 @@ namespace WpfApp
 {
     public partial class MainWindow : Window
     {
-        // [DllImport("FortranProject.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "hello")]
-        // public static extern void hello([Out] StringBuilder buf, int buflen);
+        [DllImport("FortranProject.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "hello")]
+        public static extern void hello([Out] StringBuilder buf, int buflen);
+
         private GreeterCpp greeterCpp;
         private GreeterCli greeterCli;
         private GreeterFramework greeterFramework;
@@ -26,7 +29,7 @@ namespace WpfApp
 
         private void Fortran_Click(object sender, RoutedEventArgs e)
         {
-            /*
+            
             try
             {
                 StringBuilder sb = new StringBuilder(256);
@@ -36,9 +39,7 @@ namespace WpfApp
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error");
-            }
-            */
-            OutputTextBox.Text = "Hello there!";
+            }        
         }
 
         private void Cpp_Click(object sender, RoutedEventArgs e)

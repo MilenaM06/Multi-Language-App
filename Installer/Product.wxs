@@ -47,7 +47,7 @@
 							   KeyPath="yes"/>
 				<RemoveFolder Id="RemoveAppFolder" Directory="INSTALLFOLDER" On="uninstall"/>
 			</Component>
-<!--
+
 			<Component Id="FortranProjectDll" Guid="d3c273e4-9a55-407f-b1b4-55c24a67c177">
 				<File Id="FortranProjectDllFile"
 					  Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\FortranProject.dll" />
@@ -58,7 +58,7 @@
 							   Value="1"
 							   KeyPath="yes"/>
 			</Component>
--->
+
 			<Component Id="CliProjectDll" Guid="0d29f8a4-4b7e-44f2-bc96-3c7195f75d2a">
 				<File Id="CliProjectDllFile"
 					  Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\CliProject.dll"/>

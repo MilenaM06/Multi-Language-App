@@ -34,12 +34,12 @@
 	  <PackageReference Include="Serilog" Version="4.3.0" />
 	  <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
 	</ItemGroup>
-<!--
+
 	<ItemGroup>
 		<None Include="..\..\FortranSolution\FortranProject\x64\Release\FortranProject.dll">
 			<Link>FortranProject.dll</Link>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
--->
+
 </Project>
