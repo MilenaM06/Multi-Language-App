@@ -7,7 +7,6 @@ namespace CliProject {
     GreeterCpp::GreeterCpp()
     {
         nativeGreeter = new GreeterCppNative();  
-        LogNativeMessage("C++/CLI Project Log - class GreeterCpp - Constructor was called");
     }
 
     GreeterCpp::~GreeterCpp()

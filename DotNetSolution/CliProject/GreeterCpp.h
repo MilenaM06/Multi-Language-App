@@ -9,14 +9,14 @@ namespace CliProject {
     public ref class GreeterCpp
     {
     private:
-        GreeterCppNative* nativeGreeter; // Pointer to native class
+        GreeterCppNative* nativeGreeter; 
 
     public:
-        GreeterCpp();       // Constructor
-        ~GreeterCpp();      // Destructor
-        !GreeterCpp();      // Finalizer
+        GreeterCpp();       
+        ~GreeterCpp();     
+        !GreeterCpp();      
 
-        String^ SayHello(); // Method
+        String^ SayHello();
     };
 
 }

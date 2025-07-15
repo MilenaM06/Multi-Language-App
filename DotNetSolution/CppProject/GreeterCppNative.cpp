@@ -2,10 +2,7 @@
 #include "GreeterCppNative.h"
 #include "NativeLogger.h"
 
-GreeterCppNative::GreeterCppNative()
-{
-    LogNativeMessage("C++ Native Project Log - class GreeterCppNative - Constructor was called");
-}
+GreeterCppNative::GreeterCppNative(){}
 
 std::string GreeterCppNative::SayHello()
 {

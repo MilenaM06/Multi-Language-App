@@ -2,10 +2,7 @@
 #include "GreeterCli.h"
 using namespace CliProject;
 
-GreeterCli::GreeterCli()
-{
-    LogNativeMessage("C++/CLI Project Log - class GreeterCli - Constructor was called");
-}
+GreeterCli::GreeterCli(){}
 
 String^ GreeterCli::SayHello()
 {
