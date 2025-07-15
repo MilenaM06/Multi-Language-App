@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="MultiLangApp" Language="1033" Version="1.0.0.0" Manufacturer="Milena" UpgradeCode="26f0a531-98c9-4f0f-a9b4-eecb83a1db77">
+	<Product Id="*" Name="MultiLangApp" Language="1033" Version="1.0.0.0" Manufacturer="Milena" UpgradeCode="4e32b0a1-8e64-4c09-9b47-2f64d0a9f1c3">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
@@ -26,7 +26,7 @@
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 
-			<Component Id="WpfAppExe" Guid="f6b5a2a3-7ad0-4e1d-923d-6b98dcb617e3">
+			<Component Id="WpfAppExe" Guid="9f7a68d2-53e1-4a6e-8d39-cd0f02e4a9b8">
 				<File Id="WpfAppExeFile"
 					  Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\WpfApp.exe" />
 				<File Id="WpfAppDllFile"
@@ -59,7 +59,7 @@
 							   KeyPath="yes"/>
 			</Component>
 -->
-			<Component Id="CliProjectDll" Guid="b1f4e97a-2c6d-4c75-a0a4-998e1e465df7">
+			<Component Id="CliProjectDll" Guid="0d29f8a4-4b7e-44f2-bc96-3c7195f75d2a">
 				<File Id="CliProjectDllFile"
 					  Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\CliProject.dll"/>
 				<RegistryValue Root="HKCU"
@@ -70,7 +70,7 @@
 							   KeyPath="yes"/>
 			</Component>
 
-			<Component Id="NetStandardLibDll" Guid="a2c4e8d1-45ab-4e1b-9c56-88e7686e3ad1">
+			<Component Id="NetStandardLibDll" Guid="8e41c742-1d2f-4e9c-8d5e-3a9bcf6e7240">
 				<File Id="NetStandardLibDllFile"
 					  Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\NetStandardLib.dll" />
 				<RegistryValue Root="HKCU"
@@ -81,7 +81,7 @@
 							   KeyPath="yes"/>
 			</Component>
 
-			<Component Id="NetFrameworkAppDll" Guid="b9e5187c-3fcd-4ce6-81b6-b08b714ef22c">
+			<Component Id="NetFrameworkAppDll" Guid="2bfb15e9-93d7-4ea3-8d91-789e2f06f8b1">
 				<File Id="NetFrameworkAppDllFile"
 					  Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\NetFrameworkApp.dll" />
 				<RegistryValue Root="HKCU"
