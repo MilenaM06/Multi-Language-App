@@ -9,7 +9,6 @@
 		<Feature Id="ProductFeature" Title="MultiLangApp" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
 			<ComponentGroupRef Id="ImagesComponentGroup" />
-			<ComponentGroupRef Id="LogsComponentGroup" />
 		</Feature>
 	</Product>
 
@@ -18,7 +17,6 @@
 			<Directory Id="LocalAppDataFolder">
 				<Directory Id="INSTALLFOLDER" Name="MultiLangApp">
 					 <Directory Id="ImagesFolder" Name="Images" />
-					 <Directory Id="LogsFolder" Name="Logs" />
 				</Directory>
 			</Directory>
 			<Directory Id="DesktopFolder" />

@@ -11,6 +11,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Logs\**" />
+      <EmbeddedResource Remove="Logs\**" />
+      <None Remove="Logs\**" />
+      <Page Remove="Logs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
     <ProjectReference Include="..\CliProject\CliProject.vcxproj" />
     <ProjectReference Include="..\NetFrameworkApp\NetFrameworkApp.csproj" />
     <ProjectReference Include="..\NetStandardLib\NetStandardLib.csproj" />
