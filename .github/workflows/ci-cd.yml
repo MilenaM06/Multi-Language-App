@@ -103,9 +103,11 @@ jobs:
         run: |
           msiexec /i Installer\bin\Release\Installer.msi /quiet /norestart
 
-      - name: List installed files
+      - name: List installed files (PowerShell)
+        shell: pwsh
         run: |
-          dir "C:\Users\runneradmin\AppData\Local\MultiLangApp" /s
+          Write-Host "=== MultiLangApp contents ==="
+          Get-ChildItem -Path "C:\Users\runneradmin\AppData\Local\MultiLangApp" -Recurse
 
       - name: Dump dependencies of FortranProject.dll
         shell: pwsh
