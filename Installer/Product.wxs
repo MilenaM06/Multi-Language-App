@@ -92,6 +92,19 @@
 							   KeyPath="yes"/>
 			</Component>
 
+			<Component Id="SerilogDll" Guid="3d89c2b4-fd7a-4761-b437-7b43f91a0129">
+				<File Id="SerilogDllFile"
+						Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\Serilog.dll" />
+				<File Id="SerilogSinksDllFile"
+						Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\Serilog.Sinks.File.dll" />
+				<RegistryValue Root="HKCU"
+								Key="Software\MultiLangApp\WpfApp"
+								Name="installed"
+								Type="integer"
+								Value="1"
+								KeyPath="yes"/>
+			</Component>
+
 		</ComponentGroup>
 	</Fragment>
 </Wix>
