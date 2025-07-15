@@ -90,3 +90,10 @@ jobs:
         run: dotnet test DotNetSolution/Tests/UITests/UITests.csproj --configuration ${{ env.CONFIG }} --no-build --logger trx
         env:
           APP_DEPLOY_PATH: C:\Users\runneradmin\AppData\Local\MultiLangApp\WpfApp.exe
+
+      - name: Upload Logs Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Logs
+          path: |
+            DotNetSolution/WpfApp/bin/x64/Release/net8.0-windows/Logs/**

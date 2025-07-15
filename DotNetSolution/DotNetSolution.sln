@@ -23,6 +23,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliTests", "Tests\CliTests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITests", "Tests\UITests\UITests.csproj", "{4FCF7C12-9C32-40BD-B536-017AC6A844CF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{14456E5F-5AC2-4F33-A0EB-03A90A73B143}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "spdlog", "spdlog", "{75B06A1E-3560-4F46-B335-2A47DB9512DF}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\spdlog\.clang-format = Externals\spdlog\.clang-format
+		Externals\spdlog\.clang-tidy = Externals\spdlog\.clang-tidy
+		Externals\spdlog\appveyor.yml = Externals\spdlog\appveyor.yml
+		Externals\spdlog\CMakeLists.txt = Externals\spdlog\CMakeLists.txt
+		Externals\spdlog\INSTALL = Externals\spdlog\INSTALL
+		Externals\spdlog\LICENSE = Externals\spdlog\LICENSE
+		Externals\spdlog\README.md = Externals\spdlog\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -150,6 +163,7 @@ Global
 		{10E57349-B6D5-4912-9416-700C2A2CA42F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{5F73AA4C-A140-49EF-B382-61ED31AD7F4C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{4FCF7C12-9C32-40BD-B536-017AC6A844CF} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{75B06A1E-3560-4F46-B335-2A47DB9512DF} = {14456E5F-5AC2-4F33-A0EB-03A90A73B143}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F0A30980-2E3A-4845-8218-C663509C9B4A}

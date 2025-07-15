@@ -4,17 +4,19 @@ using System.Windows;
 using NetStandardLib;
 using NetFrameworkApp;
 using CliProject;
+using Serilog;
 
 namespace WpfApp
 {
     public partial class MainWindow : Window
     {
-       // [DllImport("FortranProject.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "hello")]
-       // public static extern void hello([Out] StringBuilder buf, int buflen);
-
+        // [DllImport("FortranProject.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "hello")]
+        // public static extern void hello([Out] StringBuilder buf, int buflen);
+       
         public MainWindow()
         {
             InitializeComponent();
+            Log.Logger = new LoggerConfiguration().WriteTo.File("Logs/dotnet_logs.txt").CreateLogger();
         }
 
         private void Fortran_Click(object sender, RoutedEventArgs e)
