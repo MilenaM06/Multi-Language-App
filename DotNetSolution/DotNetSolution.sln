@@ -24,6 +24,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITests", "Tests\UITests\UITests.csproj", "{4FCF7C12-9C32-40BD-B536-017AC6A844CF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{14456E5F-5AC2-4F33-A0EB-03A90A73B143}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\spdlog\include\spdlog\spdlog.h = Externals\spdlog\include\spdlog\spdlog.h
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "spdlog", "spdlog", "{75B06A1E-3560-4F46-B335-2A47DB9512DF}"
 	ProjectSection(SolutionItems) = preProject
