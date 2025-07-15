@@ -92,9 +92,10 @@ jobs:
           APP_DEPLOY_PATH: C:\Users\runneradmin\AppData\Local\MultiLangApp\WpfApp.exe
 
       - name: List MultiLangApp contents
+        shell: pwsh
         run: |
-          echo "=== MultiLangApp folder ==="
-          dir "C:\Users\runneradmin\AppData\Local\MultiLangApp" /s
+          Write-Host "=== MultiLangApp folder ==="
+          Get-ChildItem -Path "C:\Users\runneradmin\AppData\Local\MultiLangApp" -Recurse | Format-List
 
       - name: Upload Logs Artifact
         uses: actions/upload-artifact@v4
