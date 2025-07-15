@@ -95,5 +95,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Logs
-          path: |
-            DotNetSolution/WpfApp/bin/x64/Release/net8.0-windows/Logs/**
+          path: C:/Users/runneradmin/AppData/Local/MultiLangApp/Logs/**
+          if-no-files-found: warn
