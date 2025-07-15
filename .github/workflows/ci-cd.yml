@@ -103,6 +103,17 @@ jobs:
         run: |
           msiexec /i Installer\bin\Release\Installer.msi /quiet /norestart
 
+      - name: List installed files
+        run: |
+          dir "C:\Users\runneradmin\AppData\Local\MultiLangApp" /s
+
+      - name: Dump dependencies of FortranProject.dll
+        shell: pwsh
+        run: |
+          cd "C:\Users\runneradmin\AppData\Local\MultiLangApp"
+          Get-Command .\FortranProject.dll | Format-List
+          dumpbin /DEPENDENTS FortranProject.dll || echo "dumpbin not found"
+
       - name: Run UI Tests (on installed app)
         run: dotnet test DotNetSolution/Tests/UITests/UITests.csproj --configuration ${{ env.CONFIG }} --no-build --logger trx
         env:

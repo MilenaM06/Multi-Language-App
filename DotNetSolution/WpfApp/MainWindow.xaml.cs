@@ -38,7 +38,7 @@ namespace WpfApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                 OutputTextBox.Text = $"Error: {ex.Message}";
             }        
         }
 
