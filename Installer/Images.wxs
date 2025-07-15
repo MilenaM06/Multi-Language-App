@@ -2,7 +2,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Fragment>
         <DirectoryRef Id="ImagesFolder">
-			<Component Id="cmp4A6CF44A74E3AB9E38C21B6B4748FB41" Guid="1250A13B-6D55-4BDA-9D48-B75D07211EB6">
+			<Component Id="cmpImagesFiles" Guid="1250A13B-6D55-4BDA-9D48-B75D07211EB6">
 				<File Id="fil61AA0215EFE8FD1104A31D6E3B1F44F2" Source="..\DotNetSolution\WpfApp\bin\X64\Release\net8.0-windows\Images\logo.png" />
 				<RegistryValue Root="HKCU" Key="Software\MultiLangApp\Images" Name="installed" Type="integer" Value="1" KeyPath="yes" />
 				<RemoveFolder Id="RemoveImagesFolder" Directory="ImagesFolder" On="uninstall" />
@@ -11,7 +11,7 @@
     </Fragment>
     <Fragment>
         <ComponentGroup Id="ImagesComponentGroup">
-            <ComponentRef Id="cmp4A6CF44A74E3AB9E38C21B6B4748FB41" />
+            <ComponentRef Id="cmpImagesFiles" />
         </ComponentGroup>
     </Fragment>
 </Wix>

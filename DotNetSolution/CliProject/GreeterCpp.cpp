@@ -1,18 +1,36 @@
 #include "pch.h"
 #include "GreeterCpp.h"
-#include "../CppProject/GreeterCppNative.h"  
 #include "../CppProject/NativeLogger.h"
 
-GreeterCpp::GreeterCpp()
-{
-}
+namespace CliProject {
 
-String^ GreeterCpp::SayHello()
-{
-    GreeterCppNative nativeGreeter;
-    std::string nativeResult = nativeGreeter.SayHello();
+    GreeterCpp::GreeterCpp()
+    {
+        nativeGreeter = new GreeterCppNative();  
+        LogNativeMessage("C++/CLI Project Log - class GreeterCpp - Constructor was called");
+    }
 
-    LogNativeMessage("C++/CLI Project Log - class GreeterCpp - SayHello() was called");
-    // Convert std::string to System::String^
-    return gcnew String(nativeResult.c_str());
+    GreeterCpp::~GreeterCpp()
+    {
+        this->!GreeterCpp(); 
+    }
+
+    GreeterCpp::!GreeterCpp()
+    {
+        if (nativeGreeter != nullptr)
+        {
+            delete nativeGreeter;
+            nativeGreeter = nullptr;
+        }
+    }
+
+    String^ GreeterCpp::SayHello()
+    {
+        std::string nativeResult = nativeGreeter->SayHello();
+
+        LogNativeMessage("C++/CLI Project Log - class GreeterCpp - SayHello() was called");
+
+        return gcnew String(nativeResult.c_str());
+    }
+
 }
