@@ -109,10 +109,12 @@ jobs:
           Write-Host "=== MultiLangApp contents ==="
           Get-ChildItem -Path "C:\Users\runneradmin\AppData\Local\MultiLangApp" -Recurse
 
-      - name: Dump dependencies with sigcheck
-        shell: pwsh
+      - name: Dump FortranProject.dll dependencies (dumpbin)
+        shell: cmd
         run: |
-          & "C:\Program Files\Sysinternals\sigcheck.exe" -q -e C:\Users\runneradmin\AppData\Local\MultiLangApp\FortranProject.dll
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat"
+          cd C:\Users\runneradmin\AppData\Local\MultiLangApp
+          dumpbin /DEPENDENTS FortranProject.dll
 
       - name: Run UI Tests (on installed app)
         run: dotnet test DotNetSolution/Tests/UITests/UITests.csproj --configuration ${{ env.CONFIG }} --no-build --logger trx
