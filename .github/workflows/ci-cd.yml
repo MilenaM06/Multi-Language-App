@@ -95,7 +95,11 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "=== MultiLangApp folder ==="
-          Get-ChildItem -Path "C:\Users\runneradmin\AppData\Local\MultiLangApp" -Recurse | Format-List
+          if (Test-Path "C:\Users\runneradmin\AppData\Local\MultiLangApp") {
+              Get-ChildItem -Path "C:\Users\runneradmin\AppData\Local\MultiLangApp" -Recurse | Format-List
+          } else {
+              Write-Host "Folder does not exist."
+          }
 
       - name: Upload Logs Artifact
         uses: actions/upload-artifact@v4
