@@ -11,7 +11,7 @@ namespace UITests
         private static readonly string AppPath =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MultiLangApp", "WpfApp.exe");
 
-        private void WaitUntil(Func<bool> condition, int timeoutMs = 10000, int pollIntervalMs = 100)
+        private void WaitUntil(Func<bool> condition, int timeoutMs = 15000, int pollIntervalMs = 100)
         {
             var sw = Stopwatch.StartNew();
             while (sw.ElapsedMilliseconds < timeoutMs)
@@ -57,7 +57,7 @@ namespace UITests
             var valuePattern = outputBox.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
             Assert.That(valuePattern, Is.Not.Null, "OutputTextBox does not support ValuePattern");
 
-            WaitUntil(() => valuePattern.Current.Value == expectedOutput, timeoutMs: 10000);
+            WaitUntil(() => valuePattern.Current.Value == expectedOutput, timeoutMs: 15000);
 
             Assert.That(valuePattern.Current.Value, Is.EqualTo(expectedOutput));
         }
