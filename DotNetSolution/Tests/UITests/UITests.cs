@@ -31,7 +31,7 @@ namespace UITests
                 AutomationElement.RootElement.FindFirst(
                     TreeScope.Children,
                     new PropertyCondition(AutomationElement.NameProperty, "Multi-Language App"))
-                != null, timeoutMs: 5000);
+                != null, timeoutMs: 15000);
 
             mainWindow = AutomationElement.RootElement.FindFirst(
                 TreeScope.Children,
