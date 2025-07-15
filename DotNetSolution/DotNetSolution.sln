@@ -24,9 +24,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITests", "Tests\UITests\UITests.csproj", "{4FCF7C12-9C32-40BD-B536-017AC6A844CF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{14456E5F-5AC2-4F33-A0EB-03A90A73B143}"
-	ProjectSection(SolutionItems) = preProject
-		Externals\spdlog\include\spdlog\spdlog.h = Externals\spdlog\include\spdlog\spdlog.h
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "spdlog", "spdlog", "{75B06A1E-3560-4F46-B335-2A47DB9512DF}"
 	ProjectSection(SolutionItems) = preProject
@@ -37,6 +34,137 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "spdlog", "spdlog", "{75B06A
 		Externals\spdlog\INSTALL = Externals\spdlog\INSTALL
 		Externals\spdlog\LICENSE = Externals\spdlog\LICENSE
 		Externals\spdlog\README.md = Externals\spdlog\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "include", "include", "{4DCA8A73-0071-4A67-9CA2-59B4BCB29EAB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "spdlog", "spdlog", "{BA067444-1126-4AAA-85B9-9345BB7FE8D6}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\spdlog\include\spdlog\async.h = Externals\spdlog\include\spdlog\async.h
+		Externals\spdlog\include\spdlog\async_logger-inl.h = Externals\spdlog\include\spdlog\async_logger-inl.h
+		Externals\spdlog\include\spdlog\async_logger.h = Externals\spdlog\include\spdlog\async_logger.h
+		Externals\spdlog\include\spdlog\common-inl.h = Externals\spdlog\include\spdlog\common-inl.h
+		Externals\spdlog\include\spdlog\common.h = Externals\spdlog\include\spdlog\common.h
+		Externals\spdlog\include\spdlog\formatter.h = Externals\spdlog\include\spdlog\formatter.h
+		Externals\spdlog\include\spdlog\fwd.h = Externals\spdlog\include\spdlog\fwd.h
+		Externals\spdlog\include\spdlog\logger-inl.h = Externals\spdlog\include\spdlog\logger-inl.h
+		Externals\spdlog\include\spdlog\logger.h = Externals\spdlog\include\spdlog\logger.h
+		Externals\spdlog\include\spdlog\mdc.h = Externals\spdlog\include\spdlog\mdc.h
+		Externals\spdlog\include\spdlog\pattern_formatter-inl.h = Externals\spdlog\include\spdlog\pattern_formatter-inl.h
+		Externals\spdlog\include\spdlog\pattern_formatter.h = Externals\spdlog\include\spdlog\pattern_formatter.h
+		Externals\spdlog\include\spdlog\spdlog-inl.h = Externals\spdlog\include\spdlog\spdlog-inl.h
+		Externals\spdlog\include\spdlog\spdlog.h = Externals\spdlog\include\spdlog\spdlog.h
+		Externals\spdlog\include\spdlog\stopwatch.h = Externals\spdlog\include\spdlog\stopwatch.h
+		Externals\spdlog\include\spdlog\tweakme.h = Externals\spdlog\include\spdlog\tweakme.h
+		Externals\spdlog\include\spdlog\version.h = Externals\spdlog\include\spdlog\version.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cfg", "cfg", "{207E7A9E-31B6-4C62-A73C-373059E97BCF}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\spdlog\include\spdlog\cfg\argv.h = Externals\spdlog\include\spdlog\cfg\argv.h
+		Externals\spdlog\include\spdlog\cfg\env.h = Externals\spdlog\include\spdlog\cfg\env.h
+		Externals\spdlog\include\spdlog\cfg\helpers-inl.h = Externals\spdlog\include\spdlog\cfg\helpers-inl.h
+		Externals\spdlog\include\spdlog\cfg\helpers.h = Externals\spdlog\include\spdlog\cfg\helpers.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "details", "details", "{1372260B-99A6-4221-8272-CD2408729AF8}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\spdlog\include\spdlog\details\backtracer-inl.h = Externals\spdlog\include\spdlog\details\backtracer-inl.h
+		Externals\spdlog\include\spdlog\details\backtracer.h = Externals\spdlog\include\spdlog\details\backtracer.h
+		Externals\spdlog\include\spdlog\details\circular_q.h = Externals\spdlog\include\spdlog\details\circular_q.h
+		Externals\spdlog\include\spdlog\details\console_globals.h = Externals\spdlog\include\spdlog\details\console_globals.h
+		Externals\spdlog\include\spdlog\details\file_helper-inl.h = Externals\spdlog\include\spdlog\details\file_helper-inl.h
+		Externals\spdlog\include\spdlog\details\file_helper.h = Externals\spdlog\include\spdlog\details\file_helper.h
+		Externals\spdlog\include\spdlog\details\fmt_helper.h = Externals\spdlog\include\spdlog\details\fmt_helper.h
+		Externals\spdlog\include\spdlog\details\log_msg-inl.h = Externals\spdlog\include\spdlog\details\log_msg-inl.h
+		Externals\spdlog\include\spdlog\details\log_msg.h = Externals\spdlog\include\spdlog\details\log_msg.h
+		Externals\spdlog\include\spdlog\details\log_msg_buffer-inl.h = Externals\spdlog\include\spdlog\details\log_msg_buffer-inl.h
+		Externals\spdlog\include\spdlog\details\log_msg_buffer.h = Externals\spdlog\include\spdlog\details\log_msg_buffer.h
+		Externals\spdlog\include\spdlog\details\mpmc_blocking_q.h = Externals\spdlog\include\spdlog\details\mpmc_blocking_q.h
+		Externals\spdlog\include\spdlog\details\null_mutex.h = Externals\spdlog\include\spdlog\details\null_mutex.h
+		Externals\spdlog\include\spdlog\details\os-inl.h = Externals\spdlog\include\spdlog\details\os-inl.h
+		Externals\spdlog\include\spdlog\details\os.h = Externals\spdlog\include\spdlog\details\os.h
+		Externals\spdlog\include\spdlog\details\periodic_worker-inl.h = Externals\spdlog\include\spdlog\details\periodic_worker-inl.h
+		Externals\spdlog\include\spdlog\details\periodic_worker.h = Externals\spdlog\include\spdlog\details\periodic_worker.h
+		Externals\spdlog\include\spdlog\details\registry-inl.h = Externals\spdlog\include\spdlog\details\registry-inl.h
+		Externals\spdlog\include\spdlog\details\registry.h = Externals\spdlog\include\spdlog\details\registry.h
+		Externals\spdlog\include\spdlog\details\synchronous_factory.h = Externals\spdlog\include\spdlog\details\synchronous_factory.h
+		Externals\spdlog\include\spdlog\details\tcp_client-windows.h = Externals\spdlog\include\spdlog\details\tcp_client-windows.h
+		Externals\spdlog\include\spdlog\details\tcp_client.h = Externals\spdlog\include\spdlog\details\tcp_client.h
+		Externals\spdlog\include\spdlog\details\thread_pool-inl.h = Externals\spdlog\include\spdlog\details\thread_pool-inl.h
+		Externals\spdlog\include\spdlog\details\thread_pool.h = Externals\spdlog\include\spdlog\details\thread_pool.h
+		Externals\spdlog\include\spdlog\details\udp_client-windows.h = Externals\spdlog\include\spdlog\details\udp_client-windows.h
+		Externals\spdlog\include\spdlog\details\udp_client.h = Externals\spdlog\include\spdlog\details\udp_client.h
+		Externals\spdlog\include\spdlog\details\windows_include.h = Externals\spdlog\include\spdlog\details\windows_include.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fmt", "fmt", "{07AE4360-D45E-4CBA-A495-339A1FB40161}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\spdlog\include\spdlog\fmt\bin_to_hex.h = Externals\spdlog\include\spdlog\fmt\bin_to_hex.h
+		Externals\spdlog\include\spdlog\fmt\chrono.h = Externals\spdlog\include\spdlog\fmt\chrono.h
+		Externals\spdlog\include\spdlog\fmt\compile.h = Externals\spdlog\include\spdlog\fmt\compile.h
+		Externals\spdlog\include\spdlog\fmt\fmt.h = Externals\spdlog\include\spdlog\fmt\fmt.h
+		Externals\spdlog\include\spdlog\fmt\ostr.h = Externals\spdlog\include\spdlog\fmt\ostr.h
+		Externals\spdlog\include\spdlog\fmt\ranges.h = Externals\spdlog\include\spdlog\fmt\ranges.h
+		Externals\spdlog\include\spdlog\fmt\std.h = Externals\spdlog\include\spdlog\fmt\std.h
+		Externals\spdlog\include\spdlog\fmt\xchar.h = Externals\spdlog\include\spdlog\fmt\xchar.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bundled", "bundled", "{EEE30D74-3424-4ED7-8965-C36BDC4F93D1}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\spdlog\include\spdlog\fmt\bundled\args.h = Externals\spdlog\include\spdlog\fmt\bundled\args.h
+		Externals\spdlog\include\spdlog\fmt\bundled\base.h = Externals\spdlog\include\spdlog\fmt\bundled\base.h
+		Externals\spdlog\include\spdlog\fmt\bundled\chrono.h = Externals\spdlog\include\spdlog\fmt\bundled\chrono.h
+		Externals\spdlog\include\spdlog\fmt\bundled\color.h = Externals\spdlog\include\spdlog\fmt\bundled\color.h
+		Externals\spdlog\include\spdlog\fmt\bundled\compile.h = Externals\spdlog\include\spdlog\fmt\bundled\compile.h
+		Externals\spdlog\include\spdlog\fmt\bundled\core.h = Externals\spdlog\include\spdlog\fmt\bundled\core.h
+		Externals\spdlog\include\spdlog\fmt\bundled\fmt.license.rst = Externals\spdlog\include\spdlog\fmt\bundled\fmt.license.rst
+		Externals\spdlog\include\spdlog\fmt\bundled\format-inl.h = Externals\spdlog\include\spdlog\fmt\bundled\format-inl.h
+		Externals\spdlog\include\spdlog\fmt\bundled\format.h = Externals\spdlog\include\spdlog\fmt\bundled\format.h
+		Externals\spdlog\include\spdlog\fmt\bundled\os.h = Externals\spdlog\include\spdlog\fmt\bundled\os.h
+		Externals\spdlog\include\spdlog\fmt\bundled\ostream.h = Externals\spdlog\include\spdlog\fmt\bundled\ostream.h
+		Externals\spdlog\include\spdlog\fmt\bundled\printf.h = Externals\spdlog\include\spdlog\fmt\bundled\printf.h
+		Externals\spdlog\include\spdlog\fmt\bundled\ranges.h = Externals\spdlog\include\spdlog\fmt\bundled\ranges.h
+		Externals\spdlog\include\spdlog\fmt\bundled\std.h = Externals\spdlog\include\spdlog\fmt\bundled\std.h
+		Externals\spdlog\include\spdlog\fmt\bundled\xchar.h = Externals\spdlog\include\spdlog\fmt\bundled\xchar.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sinks", "sinks", "{D2308F4F-8498-459A-BDB1-64C2AA259EC1}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\spdlog\include\spdlog\sinks\android_sink.h = Externals\spdlog\include\spdlog\sinks\android_sink.h
+		Externals\spdlog\include\spdlog\sinks\ansicolor_sink-inl.h = Externals\spdlog\include\spdlog\sinks\ansicolor_sink-inl.h
+		Externals\spdlog\include\spdlog\sinks\ansicolor_sink.h = Externals\spdlog\include\spdlog\sinks\ansicolor_sink.h
+		Externals\spdlog\include\spdlog\sinks\base_sink-inl.h = Externals\spdlog\include\spdlog\sinks\base_sink-inl.h
+		Externals\spdlog\include\spdlog\sinks\base_sink.h = Externals\spdlog\include\spdlog\sinks\base_sink.h
+		Externals\spdlog\include\spdlog\sinks\basic_file_sink-inl.h = Externals\spdlog\include\spdlog\sinks\basic_file_sink-inl.h
+		Externals\spdlog\include\spdlog\sinks\basic_file_sink.h = Externals\spdlog\include\spdlog\sinks\basic_file_sink.h
+		Externals\spdlog\include\spdlog\sinks\callback_sink.h = Externals\spdlog\include\spdlog\sinks\callback_sink.h
+		Externals\spdlog\include\spdlog\sinks\daily_file_sink.h = Externals\spdlog\include\spdlog\sinks\daily_file_sink.h
+		Externals\spdlog\include\spdlog\sinks\dist_sink.h = Externals\spdlog\include\spdlog\sinks\dist_sink.h
+		Externals\spdlog\include\spdlog\sinks\dup_filter_sink.h = Externals\spdlog\include\spdlog\sinks\dup_filter_sink.h
+		Externals\spdlog\include\spdlog\sinks\hourly_file_sink.h = Externals\spdlog\include\spdlog\sinks\hourly_file_sink.h
+		Externals\spdlog\include\spdlog\sinks\kafka_sink.h = Externals\spdlog\include\spdlog\sinks\kafka_sink.h
+		Externals\spdlog\include\spdlog\sinks\mongo_sink.h = Externals\spdlog\include\spdlog\sinks\mongo_sink.h
+		Externals\spdlog\include\spdlog\sinks\msvc_sink.h = Externals\spdlog\include\spdlog\sinks\msvc_sink.h
+		Externals\spdlog\include\spdlog\sinks\null_sink.h = Externals\spdlog\include\spdlog\sinks\null_sink.h
+		Externals\spdlog\include\spdlog\sinks\ostream_sink.h = Externals\spdlog\include\spdlog\sinks\ostream_sink.h
+		Externals\spdlog\include\spdlog\sinks\qt_sinks.h = Externals\spdlog\include\spdlog\sinks\qt_sinks.h
+		Externals\spdlog\include\spdlog\sinks\ringbuffer_sink.h = Externals\spdlog\include\spdlog\sinks\ringbuffer_sink.h
+		Externals\spdlog\include\spdlog\sinks\rotating_file_sink-inl.h = Externals\spdlog\include\spdlog\sinks\rotating_file_sink-inl.h
+		Externals\spdlog\include\spdlog\sinks\rotating_file_sink.h = Externals\spdlog\include\spdlog\sinks\rotating_file_sink.h
+		Externals\spdlog\include\spdlog\sinks\sink-inl.h = Externals\spdlog\include\spdlog\sinks\sink-inl.h
+		Externals\spdlog\include\spdlog\sinks\sink.h = Externals\spdlog\include\spdlog\sinks\sink.h
+		Externals\spdlog\include\spdlog\sinks\stdout_color_sinks-inl.h = Externals\spdlog\include\spdlog\sinks\stdout_color_sinks-inl.h
+		Externals\spdlog\include\spdlog\sinks\stdout_color_sinks.h = Externals\spdlog\include\spdlog\sinks\stdout_color_sinks.h
+		Externals\spdlog\include\spdlog\sinks\stdout_sinks-inl.h = Externals\spdlog\include\spdlog\sinks\stdout_sinks-inl.h
+		Externals\spdlog\include\spdlog\sinks\stdout_sinks.h = Externals\spdlog\include\spdlog\sinks\stdout_sinks.h
+		Externals\spdlog\include\spdlog\sinks\syslog_sink.h = Externals\spdlog\include\spdlog\sinks\syslog_sink.h
+		Externals\spdlog\include\spdlog\sinks\systemd_sink.h = Externals\spdlog\include\spdlog\sinks\systemd_sink.h
+		Externals\spdlog\include\spdlog\sinks\tcp_sink.h = Externals\spdlog\include\spdlog\sinks\tcp_sink.h
+		Externals\spdlog\include\spdlog\sinks\udp_sink.h = Externals\spdlog\include\spdlog\sinks\udp_sink.h
+		Externals\spdlog\include\spdlog\sinks\wincolor_sink-inl.h = Externals\spdlog\include\spdlog\sinks\wincolor_sink-inl.h
+		Externals\spdlog\include\spdlog\sinks\wincolor_sink.h = Externals\spdlog\include\spdlog\sinks\wincolor_sink.h
+		Externals\spdlog\include\spdlog\sinks\win_eventlog_sink.h = Externals\spdlog\include\spdlog\sinks\win_eventlog_sink.h
 	EndProjectSection
 EndProject
 Global
@@ -167,6 +295,13 @@ Global
 		{5F73AA4C-A140-49EF-B382-61ED31AD7F4C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{4FCF7C12-9C32-40BD-B536-017AC6A844CF} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{75B06A1E-3560-4F46-B335-2A47DB9512DF} = {14456E5F-5AC2-4F33-A0EB-03A90A73B143}
+		{4DCA8A73-0071-4A67-9CA2-59B4BCB29EAB} = {75B06A1E-3560-4F46-B335-2A47DB9512DF}
+		{BA067444-1126-4AAA-85B9-9345BB7FE8D6} = {4DCA8A73-0071-4A67-9CA2-59B4BCB29EAB}
+		{207E7A9E-31B6-4C62-A73C-373059E97BCF} = {BA067444-1126-4AAA-85B9-9345BB7FE8D6}
+		{1372260B-99A6-4221-8272-CD2408729AF8} = {BA067444-1126-4AAA-85B9-9345BB7FE8D6}
+		{07AE4360-D45E-4CBA-A495-339A1FB40161} = {BA067444-1126-4AAA-85B9-9345BB7FE8D6}
+		{EEE30D74-3424-4ED7-8965-C36BDC4F93D1} = {07AE4360-D45E-4CBA-A495-339A1FB40161}
+		{D2308F4F-8498-459A-BDB1-64C2AA259EC1} = {BA067444-1126-4AAA-85B9-9345BB7FE8D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F0A30980-2E3A-4845-8218-C663509C9B4A}
