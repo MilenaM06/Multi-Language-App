@@ -109,11 +109,17 @@ jobs:
           Write-Host "=== MultiLangApp contents ==="
           Get-ChildItem -Path "C:\Users\runneradmin\AppData\Local\MultiLangApp" -Recurse
 
-      - name: Find and call VsDevCmd.bat
+      - name: Dump FortranProject.dll dependencies
         shell: pwsh
         run: |
           $vsDevCmd = Get-ChildItem 'C:\Program Files\Microsoft Visual Studio\2022\*\Common7\Tools\VsDevCmd.bat' | Select-Object -First 1
-          & cmd /c "`"$($vsDevCmd.FullName)`" && cd C:\Users\runneradmin\AppData\Local\MultiLangApp && dumpbin /DEPENDENTS FortranProject.dll"
+          Write-Host "Using VsDevCmd: $($vsDevCmd.FullName)"
+          cd 'C:\Users\runneradmin\AppData\Local\MultiLangApp'
+          if (Test-Path FortranProject.dll) {
+            & cmd /c "`"$($vsDevCmd.FullName)`" && dumpbin /DEPENDENTS FortranProject.dll" || exit 0
+          } else {
+            Write-Host "FortranProject.dll not found"
+          }
 
       - name: Run UI Tests (on installed app)
         run: dotnet test DotNetSolution/Tests/UITests/UITests.csproj --configuration ${{ env.CONFIG }} --no-build --logger trx
