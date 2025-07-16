@@ -46,6 +46,8 @@ jobs:
           $intelPath = 'C:\Program Files (x86)\Intel\oneAPI\compiler\2025.2\bin'
           Write-Host "Adding $intelPath to PATH"
           $env:PATH = "$intelPath;$env:PATH"
+          # Also export for later steps
+          echo "PATH=$intelPath;$env:PATH" >> $env:GITHUB_ENV
 
       - name: Build Fortran Solution
         shell: cmd
