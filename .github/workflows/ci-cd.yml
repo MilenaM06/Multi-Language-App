@@ -1,4 +1,4 @@
-name: Multi Lang App
+name: Multi Language Application
 
 on:
   push:
@@ -8,10 +8,6 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        configuration: [Release]
-
     runs-on: windows-latest
 
     env:
@@ -35,6 +31,32 @@ jobs:
 
       - name: Restore NuGet packages
         run: nuget restore DotNetSolution\DotNetSolution.sln
+
+      - name: Install Intel OneAPI Base & HPC Toolkit
+        shell: cmd
+        run: |
+          curl -L -o basekit.exe https://registrationcenter-download.intel.com/akdlm/IRC_NAS/09a8acaf-265f-4460-866c-a3375ed5b4ff/intel-oneapi-base-toolkit-2025.2.0.591_offline.exe
+          curl -L -o hpckit.exe https://registrationcenter-download.intel.com/akdlm/IRC_NAS/3bbdaf75-6728-492e-a18c-be654dae9ee2/intel-oneapi-hpc-toolkit-2025.2.0.576_offline.exe
+          basekit.exe --silent --eula accept --a --components=intel.oneapi.win.ifort-compiler
+          hpckit.exe  --silent --eula accept --a --components=intel.oneapi.win.ifort-compiler
+
+      - name: Add Intel Fortran DLL folder to PATH
+        shell: pwsh
+        run: |
+          $intelPath = 'C:\Program Files (x86)\Intel\oneAPI\compiler\2025.2\bin'
+          Write-Host "Adding $intelPath to PATH"
+          $env:PATH = "$intelPath;$env:PATH"
+          # Also export for later steps
+          echo "PATH=$intelPath;$env:PATH" >> $env:GITHUB_ENV
+
+      - name: Build Fortran Solution
+        shell: cmd
+        run: |
+          :: set up Intel OneAPI environment
+          call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
+          :: go to workspace
+          cd %GITHUB_WORKSPACE%
+          devenv.com FortranSolution\FortranSolution.sln /Build "Release|x64"
 
       - name: Build C++ Native Project
         run: msbuild DotNetSolution\CppProject\CppProject.vcxproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
@@ -90,3 +112,10 @@ jobs:
         run: dotnet test DotNetSolution/Tests/UITests/UITests.csproj --configuration ${{ env.CONFIG }} --no-build --logger trx
         env:
           APP_DEPLOY_PATH: C:\Users\runneradmin\AppData\Local\MultiLangApp\WpfApp.exe
+
+      - name: Upload Logs Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Logs
+          path: DotNetSolution/Tests/UITests/bin/x64/Release/net8.0-windows7.0/Logs/**
+          if-no-files-found: warn

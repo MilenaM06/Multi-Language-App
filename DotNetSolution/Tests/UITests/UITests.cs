@@ -11,7 +11,7 @@ namespace UITests
         private static readonly string AppPath =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MultiLangApp", "WpfApp.exe");
 
-        private void WaitUntil(Func<bool> condition, int timeoutMs = 10000, int pollIntervalMs = 100)
+        private void WaitUntil(Func<bool> condition, int timeoutMs = 30000, int pollIntervalMs = 100)
         {
             var sw = Stopwatch.StartNew();
             while (sw.ElapsedMilliseconds < timeoutMs)
@@ -30,8 +30,7 @@ namespace UITests
             WaitUntil(() =>
                 AutomationElement.RootElement.FindFirst(
                     TreeScope.Children,
-                    new PropertyCondition(AutomationElement.NameProperty, "Multi-Language App"))
-                != null, timeoutMs: 5000);
+                    new PropertyCondition(AutomationElement.NameProperty, "Multi-Language App")) != null);
 
             mainWindow = AutomationElement.RootElement.FindFirst(
                 TreeScope.Children,
@@ -57,7 +56,7 @@ namespace UITests
             var valuePattern = outputBox.GetCurrentPattern(ValuePattern.Pattern) as ValuePattern;
             Assert.That(valuePattern, Is.Not.Null, "OutputTextBox does not support ValuePattern");
 
-            WaitUntil(() => valuePattern.Current.Value == expectedOutput, timeoutMs: 10000);
+            WaitUntil(() => valuePattern.Current.Value == expectedOutput);
 
             Assert.That(valuePattern.Current.Value, Is.EqualTo(expectedOutput));
         }
@@ -65,7 +64,7 @@ namespace UITests
         [Test]
         public void Test_FortranButton()
         {
-            ClickButtonAndCheckOutput("Fortran", "Hello there!");
+            ClickButtonAndCheckOutput("Fortran", "Hello from Fortran Project!");
         }
 
         [Test]

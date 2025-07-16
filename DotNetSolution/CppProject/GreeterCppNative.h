@@ -4,8 +4,7 @@
 class GreeterCppNative
 {
 public:
-    GreeterCppNative() = default;
-
+    GreeterCppNative();
     std::string SayHello();
 };
 

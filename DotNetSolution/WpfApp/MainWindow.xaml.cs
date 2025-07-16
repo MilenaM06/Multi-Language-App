@@ -4,22 +4,32 @@ using System.Windows;
 using NetStandardLib;
 using NetFrameworkApp;
 using CliProject;
+using Serilog;
 
 namespace WpfApp
 {
     public partial class MainWindow : Window
     {
-       // [DllImport("FortranProject.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "hello")]
-       // public static extern void hello([Out] StringBuilder buf, int buflen);
+        [DllImport("FortranProject.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "hello")]
+        public static extern void hello([Out] StringBuilder buf, int buflen);
 
+        private GreeterCpp greeterCpp;
+        private GreeterCli greeterCli;
+        private GreeterFramework greeterFramework;
+        private GreeterStandard greeterStandard;
         public MainWindow()
         {
             InitializeComponent();
+            Log.Logger = new LoggerConfiguration().WriteTo.File("Logs/dotnet_logs.txt").CreateLogger();
+            greeterCpp = new GreeterCpp();
+            greeterCli = new GreeterCli();
+            greeterFramework = new GreeterFramework();
+            greeterStandard = new GreeterStandard();
         }
 
         private void Fortran_Click(object sender, RoutedEventArgs e)
         {
-            /*
+            
             try
             {
                 StringBuilder sb = new StringBuilder(256);
@@ -28,33 +38,29 @@ namespace WpfApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
-            }
-            */
-            OutputTextBox.Text = "Hello there!";
+                 OutputTextBox.Text = $"Error: {ex.Message}";
+            }        
         }
 
         private void Cpp_Click(object sender, RoutedEventArgs e)
-        {
-            GreeterCpp greeter = new GreeterCpp();
-            string message = greeter.SayHello();
+        {    
+            string message = greeterCpp.SayHello();
             OutputTextBox.Text = message;
         }
         private void Cli_Click(object sender, RoutedEventArgs e)
-        {
-            GreeterCli greeter = new GreeterCli();
-            string message = greeter.SayHello();
+        {          
+            string message = greeterCli.SayHello();
             OutputTextBox.Text = message;
         }
         private void Net_Framework_Click(object sender, RoutedEventArgs e)
         {
-            string message = GreeterFramework.SayHello();
+            string message = greeterFramework.SayHello();
             OutputTextBox.Text = message;
         }
 
         private void Net_Standard_Click(object sender, RoutedEventArgs e)
         {
-            string message = GreeterStandard.SayHello();
+            string message = greeterStandard.SayHello();
             OutputTextBox.Text = message;
         }
 
