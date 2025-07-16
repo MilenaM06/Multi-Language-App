@@ -7,154 +7,113 @@ on:
     branches: ["main"]
 
 jobs:
-  # ----------------------------
-  # Install OneAPI
-  # ----------------------------
-  install-oneapi:
+  build:
     runs-on: windows-latest
+
+    env:
+      CONFIG: Release
+      PLATFORM: x64
+
     steps:
-      - name: Install Intel OneAPI
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Install WiX Toolset 3.14
+        run: choco install wixtoolset --version=3.14.1.20250415 --yes
+
+      - name: Setup MSBuild.exe
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Restore NuGet packages
+        run: nuget restore DotNetSolution\DotNetSolution.sln
+
+      - name: Install Intel OneAPI Base & HPC Toolkit
+        shell: cmd
         run: |
           curl -L -o basekit.exe https://registrationcenter-download.intel.com/akdlm/IRC_NAS/09a8acaf-265f-4460-866c-a3375ed5b4ff/intel-oneapi-base-toolkit-2025.2.0.591_offline.exe
           curl -L -o hpckit.exe https://registrationcenter-download.intel.com/akdlm/IRC_NAS/3bbdaf75-6728-492e-a18c-be654dae9ee2/intel-oneapi-hpc-toolkit-2025.2.0.576_offline.exe
           basekit.exe --silent --eula accept --a --components=intel.oneapi.win.ifort-compiler
           hpckit.exe  --silent --eula accept --a --components=intel.oneapi.win.ifort-compiler
 
-      - name: Upload OneAPI marker
-        run: echo done > oneapi.txt
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: oneapi-ready
-          path: oneapi.txt
-
-  # ----------------------------
-  # Build Fortran
-  # ----------------------------
-  build-fortran:
-    runs-on: windows-latest
-    needs: install-oneapi
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: oneapi-ready
-
       - name: Add Intel Fortran DLL folder to PATH
         shell: pwsh
         run: |
-          echo "PATH=C:\Program Files (x86)\Intel\oneAPI\compiler\2025.2\bin;$env:PATH" >> $env:GITHUB_ENV
+          $intelPath = 'C:\Program Files (x86)\Intel\oneAPI\compiler\2025.2\bin'
+          Write-Host "Adding $intelPath to PATH"
+          $env:PATH = "$intelPath;$env:PATH"
 
       - name: Build Fortran Solution
         shell: cmd
         run: |
+          :: set up Intel OneAPI environment
           call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
+          :: go to workspace
           cd %GITHUB_WORKSPACE%
           devenv.com FortranSolution\FortranSolution.sln /Build "Release|x64"
 
-  # ----------------------------
-  # Build C++
-  # ----------------------------
-  build-cpp:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
+      - name: Build C++ Native Project
+        run: msbuild DotNetSolution\CppProject\CppProject.vcxproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
-      - name: Build C++ and Tests
+      - name: Build C++ Native Tests
+        run: msbuild DotNetSolution\Tests\CppNativeTests\CppNativeTests.vcxproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
+
+      - name: Run C++ Native Tests
         run: |
-          msbuild DotNetSolution\CppProject\CppProject.vcxproj /p:Configuration=Release /p:Platform=x64
-          msbuild DotNetSolution\Tests\CppNativeTests\CppNativeTests.vcxproj /p:Configuration=Release /p:Platform=x64
           mkdir CppTestResults
           .\DotNetSolution\Tests\CppNativeTests\x64\Release\CppNativeTests.exe --gtest_output=xml:CppTestResults\CppTestResults.xml
 
-  # ----------------------------
-  # Build CLI
-  # ----------------------------
-  build-cli:
-    runs-on: windows-latest
-    needs: build-cpp
-    steps:
-      - uses: actions/checkout@v4
+      - name: Build CLI Project
+        run: msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
-      - name: Build CLI and Tests
-        run: |
-          msbuild DotNetSolution\CliProject\CliProject.vcxproj /p:Configuration=Release /p:Platform=x64
-          msbuild DotNetSolution\Tests\CliTests\CliTests.csproj /p:Configuration=Release /p:Platform=x64
-          dotnet test DotNetSolution\Tests\CliTests\CliTests.csproj --configuration Release --no-build --logger trx
+      - name: Build CLI Tests
+        run: msbuild DotNetSolution\Tests\CliTests\CliTests.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
-  # ----------------------------
-  # Build .NET (Framework & Standard)
-  # ----------------------------
-  build-net:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
+      - name: Run CLI Tests
+        run: dotnet test DotNetSolution/Tests/CliTests/CliTests.csproj --configuration ${{ env.CONFIG }} --no-build --logger trx
 
-      - name: Build .NET Projects and Tests
-        run: |
-          msbuild DotNetSolution\NetFrameworkApp\NetFrameworkApp.csproj /p:Configuration=Release /p:Platform=x64
-          msbuild DotNetSolution\NetStandardLib\NetStandardLib.csproj /p:Configuration=Release /p:Platform=x64
-          dotnet test DotNetSolution\Tests\DotNetTests\DotNetTests.csproj --configuration Release --logger trx
+      - name: Build .NET Framework Project
+        run: msbuild DotNetSolution\NetFrameworkApp\NetFrameworkApp.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
-  # ----------------------------
-  # Build WPF
-  # ----------------------------
-  build-wpf:
-    runs-on: windows-latest
-    needs: [build-fortran, build-cpp, build-cli, build-net]
-    steps:
-      - uses: actions/checkout@v4
+      - name: Build .NET Standard Project
+        run: msbuild DotNetSolution\NetStandardLib\NetStandardLib.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
-      - name: Build WPF
-        run: |
-          msbuild DotNetSolution\WpfApp\WpfApp.csproj /p:Configuration=Release /p:Platform=x64
+      - name: Build and Run .NET Tests
+        run: dotnet test DotNetSolution/Tests/DotNetTests/DotNetTests.csproj --configuration ${{ env.CONFIG }}  --logger trx
 
-  # ----------------------------
-  # Build MSI
-  # ----------------------------
-  build-msi:
-    runs-on: windows-latest
-    needs: build-wpf
-    steps:
-      - uses: actions/checkout@v4
+      - name: Build Wpf Application
+        run: msbuild DotNetSolution\WpfApp\WpfApp.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
-      - name: Install WiX Toolset
-        run: choco install wixtoolset --version=3.14.1.20250415 --yes
+      - name: Build UI Tests
+        run: msbuild DotNetSolution\Tests\UITests\UITests.csproj /p:Configuration=${{ env.CONFIG }} /p:Platform=${{ env.PLATFORM }}
 
-      - name: Build MSI
-        run: |
-          msbuild Installer\Installer.sln /p:Configuration=Release /p:Platform=x86
+      - name: Build MSI Installer
+        run: msbuild Installer\Installer.sln /p:Configuration=Release /p:Platform=x86
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload MSI Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: MSI-Package
           path: |
             Installer\bin\Release\*.msi
             Installer\bin\Release\*.cab
 
-  # ----------------------------
-  # UI Tests
-  # ----------------------------
-  ui-tests:
-    runs-on: windows-latest
-    needs: build-msi
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: MSI-Package
-
-      - name: Install MSI & Run UI Tests
+      - name: Install MSI on runner
         run: |
           msiexec /i Installer\bin\Release\Installer.msi /quiet /norestart
-          dotnet test DotNetSolution\Tests\UITests\UITests.csproj --configuration Release --no-build --logger trx
+
+      - name: Run UI Tests (on installed app)
+        run: dotnet test DotNetSolution/Tests/UITests/UITests.csproj --configuration ${{ env.CONFIG }} --no-build --logger trx
         env:
           APP_DEPLOY_PATH: C:\Users\runneradmin\AppData\Local\MultiLangApp\WpfApp.exe
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload Logs Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: Logs
-          path: DotNetSolution\Tests\UITests\bin\x64\Release\net8.0-windows7.0\Logs\**
+          path: DotNetSolution/Tests/UITests/bin/x64/Release/net8.0-windows7.0/Logs/**
           if-no-files-found: warn
