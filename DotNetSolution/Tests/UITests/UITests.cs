@@ -23,7 +23,7 @@ namespace UITests
             Assert.Fail("Condition was not met within timeout.");
         }
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             appProcess = Process.Start(AppPath);
@@ -91,7 +91,7 @@ namespace UITests
             ClickButtonAndCheckOutput(".NET Standard", "Hello from .NET Standard Project!");
         }
 
-        [TearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             if (appProcess != null)
