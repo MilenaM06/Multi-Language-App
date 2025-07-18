@@ -11,7 +11,7 @@ namespace UITests
         private static readonly string AppPath =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MultiLangApp", "WpfApp.exe");
 
-        private void WaitUntil(Func<bool> condition, int timeoutMs = 30000, int pollIntervalMs = 100)
+        private void WaitUntil(Func<bool> condition, int timeoutMs = 15000, int pollIntervalMs = 100)
         {
             var sw = Stopwatch.StartNew();
             while (sw.ElapsedMilliseconds < timeoutMs)
