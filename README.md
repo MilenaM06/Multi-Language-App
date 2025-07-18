@@ -68,10 +68,10 @@ The project also provides a **CI/CD pipeline with GitHub Actions** and an **MSI 
 │       └──  WpfApp.csproj
 │   └── Tests
 │       └──  CppNativeTests
-        └──  CliTests
-        └──  DotNetTests
-        └──  UITests
-    └──  DotNetSolution.sln
+│       └──  CliTests
+│       └──  DotNetTests
+│       └──  UITests
+│   └──  DotNetSolution.sln
 │
 ├── Installer/
 │   └──  Product.wxs
