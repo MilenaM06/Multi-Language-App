@@ -2,13 +2,13 @@
 
 ## Project Purpose
 
-This project demonstrates a **multi-language software suite** for Windows, showcasing how to integrate native and managed into a single solution with automated build, test, and deployment.
+This project demonstrates a **multi-language application**, showcasing how to integrate native and managed into a single solution with automated build, test, and deployment.
 
 The project also provides a **CI/CD pipeline with GitHub Actions** and an **MSI installer (WiX Toolset)** to package and distribute the application.
 
 ---
 
-## What It Does
+## What It Does?
 
 ### Integrates these components into a single WPF application:
 
@@ -16,7 +16,7 @@ The project also provides a **CI/CD pipeline with GitHub Actions** and an **MSI 
 - **C++ Native**
 - **C++/CLI**
 - **.NET Framework**
-- **.NET Standard / .NET 6+**
+- **.NET Core**
 - **WPF (.NET)**
 
 ### Includes:
@@ -98,24 +98,13 @@ Fully automated CI/CD pipeline implemented with **GitHub Actions** running on **
 
 ---
 
-## 🖥️ How It Works
+## How Does It Work?
 
-- 📝 **Fortran project** is compiled first and produces a DLL used by the WPF application.
-- 🔗 **C++ Native** is compiled as a static `.lib` and linked into **C++/CLI**, which produces a `.dll` for managed code.
-- 🔄 **C++/CLI**, **.NET Framework**, and **.NET Standard** are referenced in the WPF app.
-- 🎨 **WPF app** integrates all components and provides buttons to invoke each one and display their outputs.
-- 🧪 **Unit tests** (NUnit, Google Test) validate individual components.
-- 👀 **UI tests** (with `System.Windows.Automation`) validate the installed application.
-- 📜 **Logs** from both native (spdlog) and managed (Serilog) components are written to files and uploaded as artifacts.
-- 📦 **WiX Toolset** packages the WPF executable and its dependencies into an MSI installer.
-
----
-
-## ✨ Highlights
-
-- 🌐 **Multi-language integration**: Fortran, C++, C#, .NET
-- 🔄 **End-to-end automation**: build → test → package → artifact
-- 📦 **Installer**: professional MSI with WiX
-- 📜 **Logging**: native & managed, human-readable & JSON
-- 🧪 **Tests**: Unit & UI, integrated into pipeline
-- 🚀 **CI/CD**: Runs on Windows runners with Visual Studio & OneAPI
+- **Fortran project** is compiled first and produces a DLL used by the WPF application.
+- **C++ Native** is compiled as a static `.lib` and linked into **C++/CLI**, which produces a `.dll`.
+- **C++/CLI**, **.NET Framework**, and **.NET Core** are referenced in the WPF app.
+- **WPF app** integrates all components and provides buttons to invoke each one and display their outputs.
+- **Unit tests** (NUnit, Google Test) validate individual components.
+- **UI tests** validate the installed application.
+- **Logs** from both native (spdlog) and managed (Serilog) components are written to files and uploaded as artifacts.
+- **WiX Toolset** packages the WPF executable and its dependencies into an MSI installer.
