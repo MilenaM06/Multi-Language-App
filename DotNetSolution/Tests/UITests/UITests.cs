@@ -64,7 +64,7 @@ namespace UITests
         [Test]
         public void Test_FortranButton()
         {
-            ClickButtonAndCheckOutput("Fortran", "Hello from Fortran Project!!");
+            ClickButtonAndCheckOutput("Fortran", "Hello from Fortran Project!");
         }
 
         [Test]
