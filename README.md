@@ -12,7 +12,7 @@ The project also provides a **CI/CD pipeline with GitHub Actions** and an **MSI 
 
 ### Integrates these components into a single WPF application:
 
-- **Intel Fortran**
+- **Fortran**
 - **C++ Native**
 - **C++/CLI**
 - **.NET Framework**
