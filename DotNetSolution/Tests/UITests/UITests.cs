@@ -11,7 +11,7 @@ namespace UITests
         private static readonly string AppPath =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MultiLangApp", "WpfApp.exe");
 
-        private void WaitUntil(Func<bool> condition, int timeoutMs = 30000, int pollIntervalMs = 100)
+        private void WaitUntil(Func<bool> condition, int timeoutMs = 15000, int pollIntervalMs = 100)
         {
             var sw = Stopwatch.StartNew();
             while (sw.ElapsedMilliseconds < timeoutMs)
@@ -23,7 +23,7 @@ namespace UITests
             Assert.Fail("Condition was not met within timeout.");
         }
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             appProcess = Process.Start(AppPath);
@@ -91,7 +91,7 @@ namespace UITests
             ClickButtonAndCheckOutput(".NET Standard", "Hello from .NET Standard Project!");
         }
 
-        [TearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             if (appProcess != null)
